@@ -251,11 +251,61 @@
     section { margin: 0; padding: 0; }
     .card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; margin-bottom: 20px; padding: 28px; }
     body { background: #fff; }
+    .feedback-area, .review-section, #slide-review { display: none; }
   }
 
   /* SCROLL ANIMATIONS */
   .card { opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
   .card.visible { opacity: 1; transform: translateY(0); }
+
+  /* FEEDBACK */
+  .feedback-area { margin-top: 28px; padding-top: 20px; border-top: 1px dashed rgba(89,84,163,0.2); }
+  .feedback-toggle {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: transparent; border: 1.5px solid var(--purple); color: var(--purple);
+    padding: 6px 14px; border-radius: 8px; font-size: 13px; font-weight: 500;
+    cursor: pointer; transition: all 0.2s;
+  }
+  .feedback-toggle:hover { background: var(--light-purple); }
+  .feedback-toggle.open { background: var(--light-purple); }
+  .feedback-saved-indicator {
+    display: inline-block; margin-left: 10px; font-size: 12px; color: var(--green);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .feedback-saved-indicator.visible { opacity: 1; }
+  .feedback-body { display: none; margin-top: 12px; }
+  .feedback-body.open { display: block; }
+  .feedback-body textarea {
+    width: 100%; padding: 12px 14px; border: 1.5px solid #ccc; border-radius: 10px;
+    font-family: inherit; font-size: 14px; color: var(--dark); line-height: 1.5;
+    resize: vertical; transition: border-color 0.2s; background: var(--light-gray);
+  }
+  .feedback-body textarea:focus {
+    outline: none; border-color: var(--purple); background: var(--white);
+    box-shadow: 0 0 0 3px rgba(89,84,163,0.1);
+  }
+
+  /* REVIEW SECTION */
+  .review-section { text-align: center; }
+  .review-section .btn-copy, .review-section .btn-clear {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 12px 28px; border-radius: 10px; font-size: 15px; font-weight: 600;
+    cursor: pointer; border: none; transition: all 0.2s; margin: 8px;
+  }
+  .review-section .btn-copy {
+    background: linear-gradient(135deg, var(--purple), var(--dark-purple));
+    color: #fff;
+  }
+  .review-section .btn-copy:hover { transform: translateY(-1px); box-shadow: var(--shadow-lg); }
+  .review-section .btn-clear {
+    background: transparent; border: 1.5px solid var(--red); color: var(--red);
+  }
+  .review-section .btn-clear:hover { background: var(--light-red); }
+  .review-confirm {
+    margin-top: 16px; font-size: 14px; color: var(--green); font-weight: 600;
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .review-confirm.visible { opacity: 1; }
 </style>
 </head>
 <body>
@@ -293,6 +343,13 @@
     </div>
     <p style="margin-top: 36px; font-size: 14px; color: var(--gray);">Scroll down or use the navigation above to explore each workflow</p>
     <div style="margin-top: 20px; font-size: 28px; color: var(--purple); animation: bounce 2s infinite;">&#8595;</div>
+    <div class="feedback-area" data-slide="1">
+      <button class="feedback-toggle" onclick="toggleFeedback(1)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-1">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-1">
+        <textarea id="feedback-slide-1" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(1)"></textarea>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -338,6 +395,13 @@
       </div>
       <div class="pain-box">
         <strong>No Single Source of Truth</strong><br>Recruiter says "submitted 5" &mdash; no way to verify without checking multiple places
+      </div>
+    </div>
+    <div class="feedback-area" data-slide="2">
+      <button class="feedback-toggle" onclick="toggleFeedback(2)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-2">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-2">
+        <textarea id="feedback-slide-2" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(2)"></textarea>
       </div>
     </div>
   </div>
@@ -436,6 +500,13 @@
         </div>
       </div>
     </div>
+    <div class="feedback-area" data-slide="3">
+      <button class="feedback-toggle" onclick="toggleFeedback(3)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-3">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-3">
+        <textarea id="feedback-slide-3" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(3)"></textarea>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -517,6 +588,13 @@
             ✅ Client onboarding task list
           </div>
         </div>
+      </div>
+    </div>
+    <div class="feedback-area" data-slide="4">
+      <button class="feedback-toggle" onclick="toggleFeedback(4)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-4">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-4">
+        <textarea id="feedback-slide-4" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(4)"></textarea>
       </div>
     </div>
   </div>
@@ -643,6 +721,13 @@
     <div style="margin-top: 32px; padding: 20px 24px; background: linear-gradient(90deg, var(--light-red), #fff); border-radius: 12px; text-align: center;">
       <strong style="font-size: 16px; color: var(--red);">Typical conversion: 100 sourced → 40 screened → 24 submitted → 8 shortlisted → 3 offers → 2 join → revenue collected 90 days later</strong>
     </div>
+    <div class="feedback-area" data-slide="5">
+      <button class="feedback-toggle" onclick="toggleFeedback(5)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-5">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-5">
+        <textarea id="feedback-slide-5" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(5)"></textarea>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -729,6 +814,13 @@
         <span class="f-num" style="background:var(--green);">11</span>
         <span class="f-title">Payment Tracking</span>
         <div class="improve-box" style="margin-top:8px;">✅ Payment aging tracker (30/60/90 buckets)<br>✅ Auto-reminders at 30, 60, 75 days<br>✅ Escalation alerts for overdue<br>✅ DSO tracking per client</div>
+      </div>
+    </div>
+    <div class="feedback-area" data-slide="6">
+      <button class="feedback-toggle" onclick="toggleFeedback(6)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-6">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-6">
+        <textarea id="feedback-slide-6" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(6)"></textarea>
       </div>
     </div>
   </div>
@@ -823,6 +915,13 @@
         <strong>Cash flow gap:</strong> 60-90 days between work done and contractor paid. StaffSpot pays AFTER receiving client payment.
       </div>
     </div>
+    <div class="feedback-area" data-slide="7">
+      <button class="feedback-toggle" onclick="toggleFeedback(7)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-7">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-7">
+        <textarea id="feedback-slide-7" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(7)"></textarea>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -900,6 +999,13 @@
         <strong>Cycle reduced by 2-3 weeks.</strong> Timesheet collection: days not weeks. Invoice generation: minutes not hours. Reconciliation: automated.
       </div>
     </div>
+    <div class="feedback-area" data-slide="8">
+      <button class="feedback-toggle" onclick="toggleFeedback(8)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-8">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-8">
+        <textarea id="feedback-slide-8" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(8)"></textarea>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -973,6 +1079,13 @@
             <strong>⏱️ Takes minutes, not days.</strong> Errors caught immediately. Outstanding always accurate. Client calls reduced by 80%.
           </div>
         </div>
+      </div>
+    </div>
+    <div class="feedback-area" data-slide="9">
+      <button class="feedback-toggle" onclick="toggleFeedback(9)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-9">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-9">
+        <textarea id="feedback-slide-9" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(9)"></textarea>
       </div>
     </div>
   </div>
@@ -1051,6 +1164,13 @@
         </div>
       </div>
     </div>
+    <div class="feedback-area" data-slide="10">
+      <button class="feedback-toggle" onclick="toggleFeedback(10)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-10">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-10">
+        <textarea id="feedback-slide-10" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(10)"></textarea>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1105,6 +1225,13 @@
           <li><strong>Team productivity:</strong> Recruiter A is top performer, Recruiter C needs support</li>
           <li><strong>Client health:</strong> Client D engagement declining — review needed</li>
         </ul>
+      </div>
+    </div>
+    <div class="feedback-area" data-slide="11">
+      <button class="feedback-toggle" onclick="toggleFeedback(11)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-11">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-11">
+        <textarea id="feedback-slide-11" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(11)"></textarea>
       </div>
     </div>
   </div>
@@ -1183,6 +1310,13 @@
         <div class="progress-bar"><div class="fill" style="width: 15%; background: var(--yellow);"></div></div>
       </div>
     </div>
+    <div class="feedback-area" data-slide="12">
+      <button class="feedback-toggle" onclick="toggleFeedback(12)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-12">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-12">
+        <textarea id="feedback-slide-12" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(12)"></textarea>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1257,6 +1391,29 @@
     <div style="margin-top: 32px; padding: 24px; background: linear-gradient(135deg, var(--light-purple), var(--light-teal)); border-radius: 12px; text-align: center;">
       <p style="font-size: 16px; font-weight: 600; color: var(--dark-purple);">Once these questions are answered, we finalize the workflows and begin building Phase 0.</p>
     </div>
+    <div class="feedback-area" data-slide="13">
+      <button class="feedback-toggle" onclick="toggleFeedback(13)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-13">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-13">
+        <textarea id="feedback-slide-13" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(13)"></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- REVIEW / SUBMIT FEEDBACK -->
+<!-- ============================================================ -->
+<section id="slide-review">
+  <div class="card review-section" style="text-align: center; padding: 48px 40px;">
+    <div style="font-size: 40px; margin-bottom: 12px;">📋</div>
+    <h2>Review Complete &mdash; Submit Feedback</h2>
+    <p class="subtitle" style="margin-bottom: 32px;">Thank you for reviewing! Copy all your feedback below and send it via WhatsApp or Email.</p>
+    <div>
+      <button class="btn-copy" onclick="copyAllFeedback()">📋 Copy All Feedback to Clipboard</button>
+      <button class="btn-clear" onclick="clearAllFeedback()">🗑️ Clear All Feedback</button>
+    </div>
+    <div class="review-confirm" id="review-confirm">✅ Copied! Send this on WhatsApp or Email.</div>
   </div>
 </section>
 
@@ -1304,6 +1461,103 @@ window.addEventListener('scroll', () => {
 const style = document.createElement('style');
 style.textContent = `@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }`;
 document.head.appendChild(style);
+
+// ---- FEEDBACK SYSTEM ----
+const TOTAL_SLIDES = 13;
+const SLIDE_TITLES = {
+  1: 'Title',
+  2: 'How StaffSpot Works Today',
+  3: 'Client Acquisition (Current)',
+  4: 'Client Acquisition (Future)',
+  5: 'Permanent Placement (Current)',
+  6: 'Permanent Placement (Future)',
+  7: 'Contract Staffing Monthly Cycle (Current)',
+  8: 'Contract Staffing Monthly Cycle (Future)',
+  9: 'Batch Payment Reconciliation',
+  10: 'CEO Dashboard',
+  11: 'Role-Based Daily View',
+  12: 'Phased Roadmap',
+  13: 'Questions for CEO Review'
+};
+
+function toggleFeedback(n) {
+  const body = document.getElementById('feedback-body-' + n);
+  const btn = body.previousElementSibling.previousElementSibling;
+  body.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+
+function saveFeedback(n) {
+  const ta = document.getElementById('feedback-slide-' + n);
+  const val = ta.value;
+  localStorage.setItem('feedback-slide-' + n, val);
+  updateIndicator(n);
+}
+
+function updateIndicator(n) {
+  const indicator = document.getElementById('feedback-indicator-' + n);
+  const val = localStorage.getItem('feedback-slide-' + n);
+  if (val && val.trim().length > 0) {
+    indicator.classList.add('visible');
+  } else {
+    indicator.classList.remove('visible');
+  }
+}
+
+function restoreAllFeedback() {
+  for (let i = 1; i <= TOTAL_SLIDES; i++) {
+    const ta = document.getElementById('feedback-slide-' + i);
+    if (ta) {
+      const saved = localStorage.getItem('feedback-slide-' + i);
+      if (saved) { ta.value = saved; }
+      updateIndicator(i);
+    }
+  }
+}
+
+function copyAllFeedback() {
+  let lines = [];
+  for (let i = 1; i <= TOTAL_SLIDES; i++) {
+    const val = localStorage.getItem('feedback-slide-' + i);
+    if (val && val.trim().length > 0) {
+      lines.push('Slide ' + i + ' \u2014 ' + SLIDE_TITLES[i] + ':\n' + val.trim());
+    }
+  }
+  if (lines.length === 0) {
+    alert('No feedback to copy. Add feedback to at least one slide first.');
+    return;
+  }
+  const text = lines.join('\n\n');
+  navigator.clipboard.writeText(text).then(function() {
+    const confirm = document.getElementById('review-confirm');
+    confirm.classList.add('visible');
+    setTimeout(function() { confirm.classList.remove('visible'); }, 4000);
+  }).catch(function() {
+    // Fallback for older browsers
+    const tmp = document.createElement('textarea');
+    tmp.value = text;
+    document.body.appendChild(tmp);
+    tmp.select();
+    document.execCommand('copy');
+    document.body.removeChild(tmp);
+    const confirm = document.getElementById('review-confirm');
+    confirm.classList.add('visible');
+    setTimeout(function() { confirm.classList.remove('visible'); }, 4000);
+  });
+}
+
+function clearAllFeedback() {
+  if (!confirm('Are you sure you want to clear all feedback from all slides? This cannot be undone.')) return;
+  for (let i = 1; i <= TOTAL_SLIDES; i++) {
+    localStorage.removeItem('feedback-slide-' + i);
+    const ta = document.getElementById('feedback-slide-' + i);
+    if (ta) { ta.value = ''; }
+    updateIndicator(i);
+  }
+}
+
+// Restore saved feedback on page load
+restoreAllFeedback();
 </script>
 
 </body>
