@@ -167,6 +167,7 @@
   .funnel-stage.s9 { background: linear-gradient(90deg, #FFE8E8, #fff); margin-left: 84px; margin-right: 84px; border-left: 3px solid var(--red); }
   .funnel-stage.s10 { background: linear-gradient(90deg, #E6F9F7, #fff); margin-left: 90px; margin-right: 90px; border-left: 3px solid var(--green); }
   .funnel-stage.s11 { background: linear-gradient(90deg, #FEF9E7, #fff); margin-left: 96px; margin-right: 96px; border-left: 3px solid var(--yellow); }
+  .funnel-stage.s12 { background: linear-gradient(90deg, #D5F5E3, #fff); margin-left: 100px; margin-right: 100px; border-left: 3px solid var(--green); }
 
   @media (max-width: 768px) {
     .funnel-stage { margin-left: 0 !important; margin-right: 0 !important; }
@@ -319,13 +320,18 @@
     <a href="#slide-4">Client (Future)</a>
     <a href="#slide-5">Perm Place.</a>
     <a href="#slide-6">Perm (Future)</a>
-    <a href="#slide-7">Contract Cycle</a>
-    <a href="#slide-8">Contract (Future)</a>
-    <a href="#slide-9">Reconciliation</a>
-    <a href="#slide-10">CEO Dashboard</a>
-    <a href="#slide-11">Daily View</a>
-    <a href="#slide-12">Roadmap</a>
-    <a href="#slide-13">Questions</a>
+    <a href="#slide-7">Perm Metrics</a>
+    <a href="#slide-8">Contract Cycle</a>
+    <a href="#slide-9">Contract (Future)</a>
+    <a href="#slide-10">Contract Deploy</a>
+    <a href="#slide-11">Contract Lifecycle</a>
+    <a href="#slide-12">Reconciliation</a>
+    <a href="#slide-13">CEO Dashboard</a>
+    <a href="#slide-14">CEO Reviews</a>
+    <a href="#slide-15">Daily View</a>
+    <a href="#slide-16">Roadmap</a>
+    <a href="#slide-17">Compliance Cal.</a>
+    <a href="#slide-18">Questions</a>
   </div>
 </nav>
 
@@ -362,13 +368,33 @@
     <p class="subtitle" style="margin-bottom: 32px;">Early-stage staffing firm &mdash; fewer than 5 clients, fewer than 50 contractors, building momentum</p>
 
     <!-- Team Row -->
-    <h3 style="margin-bottom: 16px;">👥 The Team</h3>
+    <h3 style="margin-bottom: 16px;">👥 The Team <span style="font-size: 14px; font-weight: 400; color: var(--gray);">(6-20 people)</span></h3>
     <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; align-items: center;">
       <div class="diagram-box" style="background: var(--light-purple); color: var(--dark-purple);">🎯 BD Team<br><small style="font-weight:400;">Finds clients</small></div>
       <span class="diagram-arrow">→</span>
       <div class="diagram-box" style="background: var(--light-teal); color: #148F85;">📋 Account Manager<br><small style="font-weight:400;">Manages relationships & quality</small></div>
       <span class="diagram-arrow">→</span>
       <div class="diagram-box" style="background: var(--light-yellow); color: #7D6608;">🔍 Recruiters<br><small style="font-weight:400;">Source, screen, coordinate</small></div>
+    </div>
+
+    <!-- Contracts & Commercial -->
+    <h3 style="margin-bottom: 16px;">📄 Contracts & Commercial</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin-bottom: 32px;">
+      <div style="background: var(--light-purple); border-radius: 10px; padding: 16px; font-size: 14px;">
+        <strong>MSA:</strong> Signed per client (sometimes upfront, sometimes at first placement). Each assignment gets a SOW.
+      </div>
+      <div style="background: var(--light-teal); border-radius: 10px; padding: 16px; font-size: 14px;">
+        <strong>Invoicing:</strong> One invoice per contractor. Client pays in batched transactions.
+      </div>
+      <div style="background: var(--light-yellow); border-radius: 10px; padding: 16px; font-size: 14px;">
+        <strong>Permanent payments:</strong> 90 days after candidate joins.
+      </div>
+    </div>
+
+    <!-- Vision -->
+    <h3 style="margin-bottom: 16px;">🚀 Vision</h3>
+    <div style="background: linear-gradient(135deg, var(--light-purple), var(--light-teal)); border-radius: 10px; padding: 16px; font-size: 14px; margin-bottom: 32px;">
+      Internal platform first, productize for other staffing firms later.
     </div>
 
     <!-- Tools Row -->
@@ -428,6 +454,7 @@
               <li>Referrals from placed candidates</li>
               <li>Industry events (CII/NASSCOM)</li>
               <li>Monitoring job boards for active hirers</li>
+              <li><strong>Inbound</strong> &mdash; companies reaching out via website, email, directories</li>
             </ul>
           </div>
           <div class="pain-box">Leads tracked informally or not at all. No follow-up system.</div>
@@ -444,6 +471,7 @@
               <li>Discovery meeting (in-person or video)</li>
               <li>Understand: roles, volume, timeline</li>
               <li>Assess: payment terms, agency competition</li>
+              <li>Discover: decision-making process, type of staffing needed (permanent/contract/both), budget indicators, payment practices</li>
             </ul>
           </div>
           <div class="pain-box">Meeting notes in personal notebooks. No structured capture.</div>
@@ -461,6 +489,10 @@
               <li>Payment terms negotiation</li>
               <li>Replacement guarantee terms</li>
             </ul>
+            <div style="margin-top:8px;font-size:12px;">
+              <strong>Rate ranges:</strong> Permanent: 8.33%-16.67% of CTC. Contract: 8-15% margin after statutory costs.<br>
+              <strong>Negotiation points:</strong> Fee %, payment terms (Net 30-90), guarantee period, exclusivity, non-compete.
+            </div>
             <div style="margin-top:8px;font-size:12px;"><strong>Docs:</strong> Proposal email, rate card</div>
           </div>
           <div class="pain-box">No standard margin check. Risk of unprofitable deals.</div>
@@ -474,11 +506,14 @@
           <div class="step-body">
             <ul>
               <li>Draft or review MSA</li>
-              <li>Key clauses: fee %, payment terms, exclusivity, candidate ownership</li>
+              <li>Key clauses: scope, fees, payment terms, replacement guarantee, candidate ownership, non-solicitation, NDA/confidentiality, indemnity, termination, compliance responsibility</li>
               <li>Legal review (CEO at early stage)</li>
               <li>Sign & file</li>
             </ul>
             <div style="margin-top:8px;font-size:12px;"><strong>Docs:</strong> Signed MSA</div>
+            <div style="margin-top:8px;font-size:12px;background:var(--light-yellow);padding:8px 12px;border-radius:6px;color:#7D6608;">
+              <strong>Note:</strong> MSA may be signed later for urgent requirements &mdash; common but risky.
+            </div>
           </div>
           <div class="pain-box">MSA terms not tracked. No expiry alerts. Clauses forgotten.</div>
         </div>
@@ -495,6 +530,9 @@
               <li>First requirement received</li>
               <li>AM assigns recruiter(s)</li>
             </ul>
+            <div style="margin-top:8px;font-size:12px;">
+              <strong>Operational details collected:</strong> How requirements communicated, submission format preference, interview process, billing cycle & contact, holiday calendar (for contract staffing).
+            </div>
           </div>
           <div class="pain-box">Unstructured handoff = context loss. AM asks questions already discussed. Client loses confidence.</div>
         </div>
@@ -619,6 +657,16 @@
       </div>
       <div class="funnel-connector">▼ <span class="drop" style="opacity:0;">.</span></div>
 
+      <!-- Stage 1b: Requirement Assignment -->
+      <div class="funnel-stage s1" style="border-left: 3px solid var(--purple);">
+        <span class="f-num">1b</span>
+        <span class="f-title">Requirement Assignment</span>
+        <span class="f-who">AM</span>
+        <div class="f-desc">AM assigns recruiter(s) based on expertise, workload, past performance, and client familiarity.</div>
+        <div class="pain-box" style="margin-top:8px;">Assignment is informal &mdash; based on gut feel, not data. No visibility into recruiter workload.</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop" style="opacity:0;">.</span></div>
+
       <!-- Stage 2 -->
       <div class="funnel-stage s2">
         <span class="f-num">2</span>
@@ -627,7 +675,7 @@
         <div class="f-desc">Search Naukri / LinkedIn → download resumes → add to Excel tracker → store resumes in OneDrive</div>
         <div class="pain-box" style="margin-top:8px;">Same candidate sourced by multiple recruiters. No duplicate detection. Resume versions scattered.</div>
       </div>
-      <div class="funnel-connector">▼ <span class="drop">~40% pass screening</span></div>
+      <div class="funnel-connector">▼</div>
 
       <!-- Stage 3 -->
       <div class="funnel-stage s3">
@@ -637,7 +685,7 @@
         <div class="f-desc">Phone calls to assess: skills, current CTC, expected CTC, notice period, communication, interest level</div>
         <div class="pain-box" style="margin-top:8px;">No structured screening form. Assessment quality varies by recruiter. CTC math done in head.</div>
       </div>
-      <div class="funnel-connector">▼ <span class="drop">~60% approved by AM</span></div>
+      <div class="funnel-connector">▼</div>
 
       <!-- Stage 4 -->
       <div class="funnel-stage s4">
@@ -647,7 +695,7 @@
         <div class="f-desc">AM reviews shortlist → approves or rejects → secondary screen for key/senior roles</div>
         <div class="pain-box" style="margin-top:8px;">Review queue is WhatsApp messages. No SLA tracking. Bottleneck when AM is busy.</div>
       </div>
-      <div class="funnel-connector">▼ <span class="drop">~70% submitted</span></div>
+      <div class="funnel-connector">▼</div>
 
       <!-- Stage 5 -->
       <div class="funnel-stage s5">
@@ -664,20 +712,30 @@
         <span class="f-num" style="background: var(--red);">6</span>
         <span class="f-title">Client Feedback</span>
         <span class="f-who">AM chases client</span>
-        <div class="f-desc" style="font-size: 15px; font-weight: 600; color: var(--red);">Wait... chase... wait more... ⏳⏳⏳</div>
+        <div class="f-desc" style="font-size: 15px; font-weight: 600; color: var(--red);">Wait... chase... wait more...</div>
         <div class="pain-box" style="margin-top:8px;"><strong>THE #1 BOTTLENECK.</strong> Client goes silent. AM sends follow-up emails. Calls go unanswered. Candidates lose interest while waiting. No escalation path.</div>
       </div>
-      <div class="funnel-connector">▼ <span class="drop">~30-40% shortlisted by client</span></div>
+      <div class="funnel-connector">▼</div>
 
       <!-- Stage 7 -->
       <div class="funnel-stage s7">
         <span class="f-num">7</span>
         <span class="f-title">Interview Coordination</span>
         <span class="f-who">AM / Recruiter</span>
-        <div class="f-desc">Schedule interview (back-and-forth on dates/times) → prep candidate → interview happens → collect feedback</div>
+        <div class="f-desc">Schedule interview (back-and-forth on dates/times) → prep candidate → interview happens</div>
         <div class="pain-box" style="margin-top:8px;">Scheduling is 5-10 messages per interview. No calendar integration. Candidate no-shows.</div>
       </div>
-      <div class="funnel-connector">▼ <span class="drop">~30% receive offers</span></div>
+      <div class="funnel-connector">▼ <span class="drop" style="opacity:0;">.</span></div>
+
+      <!-- Stage 7b: Feedback Collection -->
+      <div class="funnel-stage s7" style="border-left: 3px solid var(--yellow);">
+        <span class="f-num" style="background: var(--yellow);">7b</span>
+        <span class="f-title">Feedback Collection</span>
+        <span class="f-who">AM / Recruiter</span>
+        <div class="f-desc">Collect structured feedback from BOTH sides &mdash; candidate's assessment of the interview AND client's rating/decision. This is a separate critical step.</div>
+        <div class="pain-box" style="margin-top:8px;">Feedback is often one-sided (only client) or delayed. Candidate experience is not captured. Decisions drag.</div>
+      </div>
+      <div class="funnel-connector">▼</div>
 
       <!-- Stage 8 -->
       <div class="funnel-stage s8">
@@ -687,14 +745,17 @@
         <div class="f-desc">Client makes offer → AM brokers CTC negotiation between candidate and client → counter-offer risk from current employer</div>
         <div class="pain-box" style="margin-top:8px;">Counter-offers from current employer are a major risk. No structured risk assessment.</div>
       </div>
-      <div class="funnel-connector">▼ <span class="drop">~75% accept offers</span></div>
+      <div class="funnel-connector">▼</div>
 
       <!-- Stage 9 -->
       <div class="funnel-stage s9">
         <span class="f-num" style="background: var(--red);">9</span>
-        <span class="f-title">Notice Period ⚠️ HIGH RISK</span>
+        <span class="f-title">Notice Period</span>
         <span class="f-who">Recruiter</span>
-        <div class="f-desc">30-90 days of waiting. Ad-hoc check-ins. Current employer makes retention offers. Candidate gets cold feet.</div>
+        <div class="f-desc">
+          Offer acceptance → written confirmation → offer letter from client → candidate resigns → serves notice (30-90 days).<br>
+          Ad-hoc check-ins. Current employer makes retention offers. Candidate gets cold feet.
+        </div>
         <div class="pain-box" style="margin-top:8px;"><strong>15-30% DROP OFF HERE.</strong> Revenue earned after months of work vanishes. No structured follow-up cadence. Risk signs missed.</div>
       </div>
       <div class="funnel-connector">▼ <span class="drop">🔴 15-30% drop off</span></div>
@@ -702,25 +763,34 @@
       <!-- Stage 10 -->
       <div class="funnel-stage s10">
         <span class="f-num" style="background: var(--green);">10</span>
-        <span class="f-title">🎉 Joining &mdash; Revenue Earned</span>
+        <span class="f-title">Joining &mdash; Revenue Earned</span>
         <span class="f-who">Finance / AM</span>
-        <div class="f-desc">Candidate joins → manual invoice created → sent to client</div>
+        <div class="f-desc">
+          Candidate joins → manual invoice created → sent to client.<br>
+          <strong>Invoice:</strong> Fee % × CTC + GST. CGST+SGST (same state) or IGST (different state). Needs PO number for some clients.
+        </div>
       </div>
       <div class="funnel-connector">▼ <span class="drop">⏳ Wait 90 days for payment</span></div>
 
       <!-- Stage 11 -->
       <div class="funnel-stage s11">
         <span class="f-num" style="background: var(--yellow);">11</span>
-        <span class="f-title">💰 Payment (90 days later)</span>
+        <span class="f-title">Payment (90 days later)</span>
         <span class="f-who">Finance</span>
         <div class="f-desc">Track payment due date in Excel → follow up with client → chase if overdue → reconcile when received</div>
         <div class="pain-box" style="margin-top:8px;">Cash flow gap: work done in January, payment in April (if on time). Manual tracking. No aging alerts.</div>
       </div>
+      <div class="funnel-connector">▼ <span class="drop" style="opacity:0;">.</span></div>
+
+      <!-- Stage 12: Placement Closure -->
+      <div class="funnel-stage s12">
+        <span class="f-num" style="background: var(--green);">12</span>
+        <span class="f-title">Placement Closure</span>
+        <span class="f-who">Finance / AM</span>
+        <div class="f-desc">Revenue attributed to recruiter. Commission eligibility flagged. Placement status: <strong>Closed &mdash; Revenue Collected.</strong></div>
+      </div>
     </div>
 
-    <div style="margin-top: 32px; padding: 20px 24px; background: linear-gradient(90deg, var(--light-red), #fff); border-radius: 12px; text-align: center;">
-      <strong style="font-size: 16px; color: var(--red);">Typical conversion: 100 sourced → 40 screened → 24 submitted → 8 shortlisted → 3 offers → 2 join → revenue collected 90 days later</strong>
-    </div>
     <div class="feedback-area" data-slide="5">
       <button class="feedback-toggle" onclick="toggleFeedback(5)">💬 Leave Feedback on This Slide</button>
       <span class="feedback-saved-indicator" id="feedback-indicator-5">✅ Saved</span>
@@ -827,9 +897,115 @@
 </section>
 
 <!-- ============================================================ -->
-<!-- SLIDE 7: CONTRACT STAFFING — CURRENT -->
+<!-- SLIDE 7: PERMANENT PLACEMENT — KEY METRICS & TARGETS (NEW) -->
 <!-- ============================================================ -->
 <section id="slide-7">
+  <div class="card">
+    <h2>Permanent Placement: Key Metrics & Targets</h2>
+    <p class="subtitle" style="margin-bottom: 32px;">Target conversion ratios for the placement funnel &mdash; the platform will track these automatically</p>
+
+    <div class="funnel">
+      <div class="funnel-stage s1">
+        <span class="f-num">1</span>
+        <span class="f-title">Requirements Received</span>
+        <div class="f-desc">Incoming requirements from all clients</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop" style="color: var(--purple); font-weight: 600;">Target: 4-5 submissions per requirement</span></div>
+
+      <div class="funnel-stage s2">
+        <span class="f-num">2</span>
+        <span class="f-title">Submissions Made</span>
+        <div class="f-desc">Track per recruiter &mdash; how many profiles submitted per requirement</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop" style="color: var(--purple); font-weight: 600;">Target: 1 in 3-5 shortlisted by client</span></div>
+
+      <div class="funnel-stage s3">
+        <span class="f-num">3</span>
+        <span class="f-title">Client Shortlisted</span>
+        <div class="f-desc">Candidates approved by client for interview</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop" style="color: var(--purple); font-weight: 600;">Target: 75%+ attend interviews</span></div>
+
+      <div class="funnel-stage s4">
+        <span class="f-num">4</span>
+        <span class="f-title">Interviews Done</span>
+        <div class="f-desc">Interviews completed (may be multiple rounds)</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop" style="color: var(--purple); font-weight: 600;">Target: 1 in 3-4 get an offer</span></div>
+
+      <div class="funnel-stage s5">
+        <span class="f-num">5</span>
+        <span class="f-title">Offers Made</span>
+        <div class="f-desc">Client extends formal offer to candidate</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop" style="color: var(--purple); font-weight: 600;">Target: 80%+ accept</span></div>
+
+      <div class="funnel-stage s6">
+        <span class="f-num">6</span>
+        <span class="f-title">Offers Accepted</span>
+        <div class="f-desc">Candidate accepts, enters notice period</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop" style="color: var(--yellow); font-weight: 600;">Target: 70-85% actually join (risk tracking during notice period)</span></div>
+
+      <div class="funnel-stage s10">
+        <span class="f-num" style="background: var(--green);">7</span>
+        <span class="f-title">Joined</span>
+        <div class="f-desc">Candidate starts at client &mdash; placement confirmed</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop" style="color: var(--green); font-weight: 600;">Track: DSO target &lt; 60 days</span></div>
+
+      <div class="funnel-stage s11">
+        <span class="f-num" style="background: var(--yellow);">8</span>
+        <span class="f-title">Payment Received</span>
+        <div class="f-desc">Invoice collected &mdash; revenue recognized</div>
+      </div>
+    </div>
+
+    <!-- Key Metrics -->
+    <div style="margin-top: 36px;">
+      <h3 style="margin-bottom: 16px;">Key Metrics the Platform Will Track</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
+        <div style="background: var(--light-purple); padding: 16px; border-radius: 10px;">
+          <strong>Time-to-submit</strong><br>
+          <span style="font-size: 13px; color: #555;">Days from requirement received to first submission</span>
+        </div>
+        <div style="background: var(--light-purple); padding: 16px; border-radius: 10px;">
+          <strong>Time-to-fill</strong><br>
+          <span style="font-size: 13px; color: #555;">Days from requirement received to candidate joining</span>
+        </div>
+        <div style="background: var(--light-purple); padding: 16px; border-radius: 10px;">
+          <strong>Fill rate</strong><br>
+          <span style="font-size: 13px; color: #555;">% of requirements that result in a placement</span>
+        </div>
+        <div style="background: var(--light-purple); padding: 16px; border-radius: 10px;">
+          <strong>Recruiter productivity</strong><br>
+          <span style="font-size: 13px; color: #555;">Closures per recruiter per month &mdash; industry benchmark: 2-4</span>
+        </div>
+        <div style="background: var(--light-purple); padding: 16px; border-radius: 10px;">
+          <strong>Offer-to-joining ratio</strong><br>
+          <span style="font-size: 13px; color: #555;">Target: 70-85%</span>
+        </div>
+        <div style="background: var(--light-purple); padding: 16px; border-radius: 10px;">
+          <strong>Client feedback TAT</strong><br>
+          <span style="font-size: 13px; color: #555;">Days for client to respond to submissions</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-area" data-slide="7">
+      <button class="feedback-toggle" onclick="toggleFeedback(7)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-7">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-7">
+        <textarea id="feedback-slide-7" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(7)"></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 8: CONTRACT STAFFING — CURRENT -->
+<!-- ============================================================ -->
+<section id="slide-8">
   <div class="card">
     <h2>Workflow 3 — Contract Staffing Monthly Cycle <span class="tag tag-red">Current State</span></h2>
     <p class="subtitle" style="margin-bottom: 32px;">The monthly operational grind: timesheets → invoices → payments → payroll → compliance. Repeats every month.</p>
@@ -883,6 +1059,12 @@
         <div>Manual salary calculation. Pay contractor.</div>
       </div>
       <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-teal);">
+        <div class="c-icon">📄</div>
+        <div class="c-title">Generate Payslip</div>
+        <div>Payslip generated after salary payment.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
       <div class="cycle-step" style="background: var(--light-purple);">
         <div class="c-icon">📑</div>
         <div class="c-title">File PF/ESI/TDS</div>
@@ -915,20 +1097,29 @@
         <strong>Cash flow gap:</strong> 60-90 days between work done and contractor paid. StaffSpot pays AFTER receiving client payment.
       </div>
     </div>
-    <div class="feedback-area" data-slide="7">
-      <button class="feedback-toggle" onclick="toggleFeedback(7)">💬 Leave Feedback on This Slide</button>
-      <span class="feedback-saved-indicator" id="feedback-indicator-7">✅ Saved</span>
-      <div class="feedback-body" id="feedback-body-7">
-        <textarea id="feedback-slide-7" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(7)"></textarea>
+
+    <!-- Compliance Deadlines -->
+    <div style="margin-top: 20px; padding: 16px 20px; background: var(--light-yellow); border-radius: 10px; border-left: 4px solid var(--yellow);">
+      <strong style="color: #7D6608;">Monthly Compliance Deadlines:</strong>
+      <span style="font-size: 13px; color: #555;">
+        TDS deposit by 7th &bull; GSTR-1 by 11th &bull; PF/ESI by 15th &bull; GSTR-3B by 20th
+      </span>
+    </div>
+
+    <div class="feedback-area" data-slide="8">
+      <button class="feedback-toggle" onclick="toggleFeedback(8)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-8">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-8">
+        <textarea id="feedback-slide-8" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(8)"></textarea>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- SLIDE 8: CONTRACT STAFFING — FUTURE -->
+<!-- SLIDE 9: CONTRACT STAFFING — FUTURE -->
 <!-- ============================================================ -->
-<section id="slide-8">
+<section id="slide-9">
   <div class="card">
     <h2>Workflow 3 — Contract Staffing Monthly Cycle <span class="tag tag-green">Future State</span></h2>
     <p class="subtitle" style="margin-bottom: 32px;">Same cycle, dramatically faster. Fewer manual steps, proactive alerts, automated calculations.</p>
@@ -999,20 +1190,195 @@
         <strong>Cycle reduced by 2-3 weeks.</strong> Timesheet collection: days not weeks. Invoice generation: minutes not hours. Reconciliation: automated.
       </div>
     </div>
-    <div class="feedback-area" data-slide="8">
-      <button class="feedback-toggle" onclick="toggleFeedback(8)">💬 Leave Feedback on This Slide</button>
-      <span class="feedback-saved-indicator" id="feedback-indicator-8">✅ Saved</span>
-      <div class="feedback-body" id="feedback-body-8">
-        <textarea id="feedback-slide-8" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(8)"></textarea>
+    <div class="feedback-area" data-slide="9">
+      <button class="feedback-toggle" onclick="toggleFeedback(9)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-9">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-9">
+        <textarea id="feedback-slide-9" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(9)"></textarea>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- SLIDE 9: BATCH PAYMENT RECONCILIATION -->
+<!-- SLIDE 10: CONTRACT STAFFING — SOURCING TO DEPLOYMENT (NEW) -->
 <!-- ============================================================ -->
-<section id="slide-9">
+<section id="slide-10">
+  <div class="card">
+    <h2>Contract Staffing: Sourcing to Deployment</h2>
+    <p class="subtitle" style="margin-bottom: 32px;">Phase A &mdash; From requirement intake to contractor starting at client site (Steps 1-5)</p>
+
+    <div class="flow-h">
+      <div class="step">
+        <div class="step-card" style="border-top-color: var(--teal);">
+          <span class="step-num" style="background: var(--teal);">1</span>
+          <div class="step-title">Requirement Intake</div>
+          <div class="step-who">👤 AM / BD</div>
+          <div class="step-body">
+            <ul>
+              <li>Bill rate agreed with client</li>
+              <li>SOW drafted</li>
+              <li>Margin calculated</li>
+            </ul>
+            <div style="margin-top: 8px; font-size: 12px; color: var(--gray);">
+              Bill rate - salary - PF 13% - ESI 3.25% - PT - bonus 8.33% - overhead = margin. Need ≥8-10% margin to be viable.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-card" style="border-top-color: var(--teal);">
+          <span class="step-num" style="background: var(--teal);">2</span>
+          <div class="step-title">Sourcing & Screening</div>
+          <div class="step-who">👤 Recruiter</div>
+          <div class="step-body">
+            <ul>
+              <li>Same as permanent BUT: pay rate negotiation is critical</li>
+              <li>Every ₹1,000 error in pay rate directly hits margin</li>
+              <li>Candidate must agree to be on StaffSpot's payroll, not client's</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-card" style="border-top-color: var(--teal);">
+          <span class="step-num" style="background: var(--teal);">3</span>
+          <div class="step-title">Client Selection & Offer</div>
+          <div class="step-who">👤 AM</div>
+          <div class="step-body">
+            <ul>
+              <li>Faster than permanent (1-2 interview rounds)</li>
+              <li>Verbal offer with CTC, contract duration, start date</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-card" style="border-top-color: var(--teal);">
+          <span class="step-num" style="background: var(--teal);">4</span>
+          <div class="step-title">Contractor Onboarding</div>
+          <div class="step-who">👤 HR / AM</div>
+          <div class="step-body">
+            <ul>
+              <li>Appointment letter from <strong>StaffSpot</strong> (not client)</li>
+              <li>PF enrollment (UAN via EPFO portal, needs Aadhaar)</li>
+              <li>ESI enrollment (if salary ≤ ₹21,000/month)</li>
+              <li>Professional Tax registration (state-wise)</li>
+              <li>Bank details, NDA</li>
+            </ul>
+            <div style="margin-top:8px;font-size:12px;color:var(--gray);">
+              <strong>Document checklist:</strong> Aadhaar, PAN, bank proof, photo, certificates.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-card" style="border-top-color: var(--green);">
+          <span class="step-num" style="background: var(--green);">5</span>
+          <div class="step-title">Deployment</div>
+          <div class="step-who">👤 AM</div>
+          <div class="step-body">
+            <ul>
+              <li>Contractor starts at client site</li>
+              <li>Day-1 confirmation</li>
+              <li>Assignment record created: contractor → client → role → bill rate → pay rate → margin → dates → reporting manager</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Margin Math Example -->
+    <div style="margin-top: 36px; padding: 24px; background: var(--light-gray); border-radius: 12px;">
+      <h3 style="margin-bottom: 12px;">Margin Math Example</h3>
+      <div style="background: var(--white); padding: 20px; border-radius: 10px; font-family: monospace; font-size: 14px; line-height: 2;">
+        Client bill rate (monthly): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;₹80,000<br>
+        - Contractor gross salary: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;₹50,000<br>
+        - PF employer (13%): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;₹6,500<br>
+        - ESI employer (3.25%): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;₹1,625<br>
+        - Professional Tax: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;₹200<br>
+        - Bonus provision (8.33%): &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;₹4,165<br>
+        - Admin/insurance overhead: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;₹1,500<br>
+        <strong>= StaffSpot gross margin: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;₹16,010 (20%)</strong><br>
+        <span style="font-size: 12px; color: var(--gray);">GST charged on top to client &mdash; not part of margin</span>
+      </div>
+    </div>
+
+    <div class="feedback-area" data-slide="10">
+      <button class="feedback-toggle" onclick="toggleFeedback(10)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-10">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-10">
+        <textarea id="feedback-slide-10" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(10)"></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 11: CONTRACT STAFFING — LIFECYCLE EVENTS (NEW) -->
+<!-- ============================================================ -->
+<section id="slide-11">
+  <div class="card">
+    <h2>Contract Staffing: Lifecycle Events</h2>
+    <p class="subtitle" style="margin-bottom: 32px;">Phase C &mdash; Renewal, exit, and redeployment (Steps 15-17)</p>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+      <!-- Renewal -->
+      <div style="background: var(--light-teal); border-radius: 12px; padding: 24px; border-top: 4px solid var(--teal);">
+        <h3 style="color: #148F85;">1. Contract Renewal / Extension</h3>
+        <ul style="font-size: 14px; padding-left: 18px; line-height: 1.8;">
+          <li>System alerts AM <strong>60 days</strong> before contract end</li>
+          <li>Check with client: extend? Rate change?</li>
+          <li>Check with contractor: continue? Salary increase?</li>
+          <li><strong>Rate renegotiation:</strong> contractor wants raise, client resists bill rate increase → margin compression risk</li>
+          <li><strong>Contract-to-permanent conversion:</strong> common after 12+ months, involves conversion fee per SOW</li>
+          <li>New SOW or amendment issued</li>
+        </ul>
+      </div>
+
+      <!-- Exit -->
+      <div style="background: var(--light-red); border-radius: 12px; padding: 24px; border-top: 4px solid var(--red);">
+        <h3 style="color: var(--red);">2. Contract End / Exit</h3>
+        <ul style="font-size: 14px; padding-left: 18px; line-height: 1.8;">
+          <li>Last working day confirmed</li>
+          <li><strong>Client-side:</strong> return assets, revoke access</li>
+          <li><strong>Full & Final (F&F):</strong> final salary + leave encashment - recoveries</li>
+          <li><strong>Exit documents:</strong> relieving letter, experience certificate, final payslip, Form 16</li>
+          <li><strong>PF:</strong> guide contractor through withdrawal (Form 19) or transfer (Form 13) on EPFO portal</li>
+          <li><strong>ESI:</strong> medical benefits continue for a period after exit</li>
+          <li><strong>Exit conversation:</strong> feedback, willingness to be redeployed</li>
+        </ul>
+      </div>
+
+      <!-- Redeployment -->
+      <div style="background: var(--light-green); border-radius: 12px; padding: 24px; border-top: 4px solid var(--green);">
+        <h3 style="color: var(--green);">3. Redeployment</h3>
+        <ul style="font-size: 14px; padding-left: 18px; line-height: 1.8;">
+          <li>Move contractor to different client/role</li>
+          <li><strong>PF/ESI continuity</strong> (same employer &mdash; StaffSpot)</li>
+          <li>New SOW, possibly new rates</li>
+          <li><strong>Bench period tracking:</strong> if gap between assignments &mdash; contractor on payroll but unbilled = pure cost</li>
+        </ul>
+        <div class="pain-box" style="margin-top: 12px;">
+          Bench days are direct cost to StaffSpot. Must be tracked and minimized.
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-area" data-slide="11">
+      <button class="feedback-toggle" onclick="toggleFeedback(11)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-11">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-11">
+        <textarea id="feedback-slide-11" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(11)"></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 12: BATCH PAYMENT RECONCILIATION -->
+<!-- ============================================================ -->
+<section id="slide-12">
   <div class="card">
     <h2>Batch Payment Reconciliation <span class="tag tag-red">Before</span> & <span class="tag tag-green">After</span></h2>
     <p class="subtitle" style="margin-bottom: 32px;">The hidden time sink: matching lump-sum client payments to individual invoices</p>
@@ -1074,27 +1440,30 @@
             <li>Highlights discrepancies clearly</li>
             <li>Partial payments tracked automatically</li>
             <li>Full audit trail of what was matched when</li>
+            <li><strong>After reconciliation:</strong> triggers contractor salary payment for matched invoices</li>
+            <li><strong>TDS certificate tracking:</strong> Form 16A tracked quarterly</li>
+            <li><strong>Future:</strong> Bank CSV import for auto-matching (not just manual entry)</li>
           </ul>
           <div class="improve-box" style="margin-top: 12px;">
-            <strong>⏱️ Takes minutes, not days.</strong> Errors caught immediately. Outstanding always accurate. Client calls reduced by 80%.
+            <strong>⏱️ Takes minutes, not days.</strong> Errors caught immediately. Outstanding always accurate.
           </div>
         </div>
       </div>
     </div>
-    <div class="feedback-area" data-slide="9">
-      <button class="feedback-toggle" onclick="toggleFeedback(9)">💬 Leave Feedback on This Slide</button>
-      <span class="feedback-saved-indicator" id="feedback-indicator-9">✅ Saved</span>
-      <div class="feedback-body" id="feedback-body-9">
-        <textarea id="feedback-slide-9" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(9)"></textarea>
+    <div class="feedback-area" data-slide="12">
+      <button class="feedback-toggle" onclick="toggleFeedback(12)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-12">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-12">
+        <textarea id="feedback-slide-12" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(12)"></textarea>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- SLIDE 10: CEO DASHBOARD -->
+<!-- SLIDE 13: CEO DASHBOARD -->
 <!-- ============================================================ -->
-<section id="slide-10">
+<section id="slide-13">
   <div class="card">
     <h2>CEO Dashboard <span class="tag tag-red">Current</span> vs <span class="tag tag-green">Future</span></h2>
     <p class="subtitle" style="margin-bottom: 32px;">How the CEO starts her day</p>
@@ -1148,15 +1517,20 @@
           </div>
           <div style="background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
             <strong>💰 Revenue Snapshot</strong><br>
-            <span style="font-size:13px;">This month: ₹8.2L | Pipeline: ₹14L | Outstanding: ₹22L | Overdue: ₹3.5L 🔴</span>
+            <span style="font-size:13px;">This month: ₹8.2L | Pipeline: ₹14L | Outstanding: ₹22L | Overdue: ₹3.5L 🔴</span><br>
+            <span style="font-size:13px;"><strong>Cash position:</strong> Do we have enough to cover contractor payroll this month?</span>
           </div>
           <div style="background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
             <strong>👥 Team Activity</strong><br>
             <span style="font-size:13px;">Per recruiter: submissions, closures, pipeline health</span>
           </div>
-          <div style="background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+          <div style="background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
             <strong>🔔 Action Items</strong><br>
             <span style="font-size:13px;">What needs CEO attention today — escalations, approvals, decisions</span>
+          </div>
+          <div style="background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <strong>📝 Personal Follow-ups</strong><br>
+            <span style="font-size:13px;">CEO's own to-do list: call VP about expanding, follow up on overdue payment, prepare for QBR</span>
           </div>
         </div>
         <div class="improve-box" style="margin-top: 16px; text-align: center; font-size: 18px;">
@@ -1164,23 +1538,112 @@
         </div>
       </div>
     </div>
-    <div class="feedback-area" data-slide="10">
-      <button class="feedback-toggle" onclick="toggleFeedback(10)">💬 Leave Feedback on This Slide</button>
-      <span class="feedback-saved-indicator" id="feedback-indicator-10">✅ Saved</span>
-      <div class="feedback-body" id="feedback-body-10">
-        <textarea id="feedback-slide-10" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(10)"></textarea>
+    <div class="feedback-area" data-slide="13">
+      <button class="feedback-toggle" onclick="toggleFeedback(13)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-13">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-13">
+        <textarea id="feedback-slide-13" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(13)"></textarea>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- SLIDE 11: ROLE-BASED DAILY VIEW -->
+<!-- SLIDE 14: CEO WEEKLY & MONTHLY REVIEWS (NEW) -->
 <!-- ============================================================ -->
-<section id="slide-11">
+<section id="slide-14">
+  <div class="card">
+    <h2>CEO: Weekly & Monthly Reviews</h2>
+    <p class="subtitle" style="margin-bottom: 32px;">Structured review cadence &mdash; powered by platform data</p>
+
+    <div class="side-by-side">
+      <!-- Weekly -->
+      <div class="side-left" style="background: var(--light-purple); border: 2px solid #D6D2E6;">
+        <h3 style="color: var(--dark-purple);">📅 Weekly Review (Every Monday)</h3>
+        <div style="font-size: 14px; line-height: 1.8;">
+          <h4 style="margin-top: 12px;">Conversion Funnel (Past Week)</h4>
+          <ul style="padding-left: 18px;">
+            <li>Requirements → Submissions <span class="tag tag-purple">target: 4-5 per req</span></li>
+            <li>Submissions → Shortlisted <span class="tag tag-purple">target: 1 in 3-5</span></li>
+            <li>Interviews → Offers <span class="tag tag-purple">target: 1 in 3-4</span></li>
+            <li>Offers → Joinings <span class="tag tag-purple">target: 70-85%</span></li>
+          </ul>
+
+          <h4 style="margin-top: 16px;">Recruiter Performance</h4>
+          <ul style="padding-left: 18px;">
+            <li>Side-by-side comparison across all recruiters</li>
+          </ul>
+
+          <h4 style="margin-top: 16px;">Client Health</h4>
+          <ul style="padding-left: 18px;">
+            <li>🟢 Active | 🟡 Quiet (no activity 2+ weeks) | 🔴 At risk</li>
+          </ul>
+
+          <h4 style="margin-top: 16px;">Pipeline Forecast</h4>
+          <ul style="padding-left: 18px;">
+            <li>Expected revenue from candidates in offer/notice stage</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Monthly -->
+      <div class="side-right" style="background: var(--light-teal); border: 2px solid #A3E4D7;">
+        <h3 style="color: #148F85;">📊 Monthly Review</h3>
+        <div style="font-size: 14px; line-height: 1.8;">
+          <h4 style="margin-top: 12px;">Revenue</h4>
+          <ul style="padding-left: 18px;">
+            <li>Permanent fees + contract invoices vs. target</li>
+          </ul>
+
+          <h4 style="margin-top: 16px;">Collections</h4>
+          <ul style="padding-left: 18px;">
+            <li>Received vs. outstanding, DSO trend</li>
+          </ul>
+
+          <h4 style="margin-top: 16px;">Margin Analysis</h4>
+          <ul style="padding-left: 18px;">
+            <li>Per contractor, per client (for contract staffing)</li>
+          </ul>
+
+          <h4 style="margin-top: 16px;">Client Concentration</h4>
+          <ul style="padding-left: 18px;">
+            <li>% of revenue from top 1/3/5 clients</li>
+            <li style="color: var(--red); font-weight: 600;">If &gt;40% from one client = risk</li>
+          </ul>
+
+          <h4 style="margin-top: 16px;">Recruiter Productivity</h4>
+          <ul style="padding-left: 18px;">
+            <li>Revenue per recruiter, cost vs. revenue</li>
+          </ul>
+
+          <h4 style="margin-top: 16px;">Compliance</h4>
+          <ul style="padding-left: 18px;">
+            <li>All filings on time? Any penalties?</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="feedback-area" data-slide="14">
+      <button class="feedback-toggle" onclick="toggleFeedback(14)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-14">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-14">
+        <textarea id="feedback-slide-14" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(14)"></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 15: ROLE-BASED DAILY VIEW -->
+<!-- ============================================================ -->
+<section id="slide-15">
   <div class="card">
     <h2>Role-Based: "What Should I Do Today?"</h2>
-    <p class="subtitle" style="margin-bottom: 32px;">Every role opens the platform and immediately sees their priorities. No guessing, no asking.</p>
+    <p class="subtitle" style="margin-bottom: 12px;">Every role opens the platform and immediately sees their priorities. No guessing, no asking.</p>
+    <div style="background: var(--light-yellow); border-left: 4px solid var(--yellow); border-radius: 8px; padding: 12px 16px; margin-bottom: 32px; font-size: 13px; color: #7D6608;">
+      <strong>Note:</strong> These views are designed based on the workflow analysis &mdash; to be validated by the CEO.
+    </div>
 
     <div class="role-grid">
       <!-- Recruiter -->
@@ -1227,20 +1690,20 @@
         </ul>
       </div>
     </div>
-    <div class="feedback-area" data-slide="11">
-      <button class="feedback-toggle" onclick="toggleFeedback(11)">💬 Leave Feedback on This Slide</button>
-      <span class="feedback-saved-indicator" id="feedback-indicator-11">✅ Saved</span>
-      <div class="feedback-body" id="feedback-body-11">
-        <textarea id="feedback-slide-11" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(11)"></textarea>
+    <div class="feedback-area" data-slide="15">
+      <button class="feedback-toggle" onclick="toggleFeedback(15)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-15">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-15">
+        <textarea id="feedback-slide-15" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(15)"></textarea>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- SLIDE 12: ROADMAP -->
+<!-- SLIDE 16: ROADMAP -->
 <!-- ============================================================ -->
-<section id="slide-12">
+<section id="slide-16">
   <div class="card">
     <h2>What We Build — Phased Roadmap</h2>
     <p class="subtitle" style="margin-bottom: 36px;">Incremental value delivery. Each phase solves a concrete pain. No big-bang launch.</p>
@@ -1310,20 +1773,96 @@
         <div class="progress-bar"><div class="fill" style="width: 15%; background: var(--yellow);"></div></div>
       </div>
     </div>
-    <div class="feedback-area" data-slide="12">
-      <button class="feedback-toggle" onclick="toggleFeedback(12)">💬 Leave Feedback on This Slide</button>
-      <span class="feedback-saved-indicator" id="feedback-indicator-12">✅ Saved</span>
-      <div class="feedback-body" id="feedback-body-12">
-        <textarea id="feedback-slide-12" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(12)"></textarea>
+    <div class="feedback-area" data-slide="16">
+      <button class="feedback-toggle" onclick="toggleFeedback(16)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-16">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-16">
+        <textarea id="feedback-slide-16" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(16)"></textarea>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ============================================================ -->
-<!-- SLIDE 13: QUESTIONS FOR CEO -->
+<!-- SLIDE 17: STATUTORY COMPLIANCE CALENDAR (NEW) -->
 <!-- ============================================================ -->
-<section id="slide-13">
+<section id="slide-17">
+  <div class="card">
+    <h2>Statutory Compliance Calendar</h2>
+    <p class="subtitle" style="margin-bottom: 32px;">Monthly and periodic filing deadlines &mdash; missing these means penalties</p>
+
+    <div style="overflow-x: auto;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <thead>
+          <tr style="background: linear-gradient(135deg, var(--dark-purple), var(--purple)); color: #fff;">
+            <th style="padding: 14px 18px; text-align: left; border-radius: 10px 0 0 0;">Deadline</th>
+            <th style="padding: 14px 18px; text-align: left;">Filing</th>
+            <th style="padding: 14px 18px; text-align: left; border-radius: 0 10px 0 0;">Penalty if Late</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background: var(--light-gray);">
+            <td style="padding: 12px 18px; font-weight: 600;">7th of month</td>
+            <td style="padding: 12px 18px;">TDS deposit (salary TDS)</td>
+            <td style="padding: 12px 18px; color: var(--red);">1.5% per month interest</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 18px; font-weight: 600;">11th of month</td>
+            <td style="padding: 12px 18px;">GSTR-1 (outward invoices)</td>
+            <td style="padding: 12px 18px; color: var(--red);">₹50/day</td>
+          </tr>
+          <tr style="background: var(--light-gray);">
+            <td style="padding: 12px 18px; font-weight: 600;">15th of month</td>
+            <td style="padding: 12px 18px;">PF ECR (monthly PF contribution)</td>
+            <td style="padding: 12px 18px; color: var(--red);">12% p.a. interest + up to 100% damages</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 18px; font-weight: 600;">15th of month</td>
+            <td style="padding: 12px 18px;">ESI contribution</td>
+            <td style="padding: 12px 18px; color: var(--red);">12% p.a. interest</td>
+          </tr>
+          <tr style="background: var(--light-gray);">
+            <td style="padding: 12px 18px; font-weight: 600;">15th-30th (varies)</td>
+            <td style="padding: 12px 18px;">Professional Tax (state-wise)</td>
+            <td style="padding: 12px 18px; color: var(--red);">State-specific</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 18px; font-weight: 600;">20th of month</td>
+            <td style="padding: 12px 18px;">GSTR-3B (summary + tax payment)</td>
+            <td style="padding: 12px 18px; color: var(--red);">18% p.a. interest</td>
+          </tr>
+          <tr style="background: var(--light-gray);">
+            <td style="padding: 12px 18px; font-weight: 600;">Quarterly (Jul/Oct/Jan/May)</td>
+            <td style="padding: 12px 18px;">TDS Return (Form 24Q)</td>
+            <td style="padding: 12px 18px; color: var(--red);">₹200/day penalty</td>
+          </tr>
+          <tr>
+            <td style="padding: 12px 18px; font-weight: 600; border-radius: 0 0 0 10px;">15th June annually</td>
+            <td style="padding: 12px 18px;">Form 16 to contractors</td>
+            <td style="padding: 12px 18px; color: var(--red); border-radius: 0 0 10px 0;">₹100/day per certificate</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="improve-box" style="margin-top: 24px;">
+      <strong>Platform automation:</strong> The platform will auto-calculate all deadlines, send 7-day and 3-day advance alerts, track filing status, and store all receipts.
+    </div>
+
+    <div class="feedback-area" data-slide="17">
+      <button class="feedback-toggle" onclick="toggleFeedback(17)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-17">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-17">
+        <textarea id="feedback-slide-17" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(17)"></textarea>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 18: QUESTIONS FOR CEO -->
+<!-- ============================================================ -->
+<section id="slide-18">
   <div class="card">
     <h2>Questions for CEO Review</h2>
     <p class="subtitle" style="margin-bottom: 32px;">Please review all workflows above and share your feedback. Here are specific questions we need answered to finalize the platform blueprint.</p>
@@ -1391,11 +1930,11 @@
     <div style="margin-top: 32px; padding: 24px; background: linear-gradient(135deg, var(--light-purple), var(--light-teal)); border-radius: 12px; text-align: center;">
       <p style="font-size: 16px; font-weight: 600; color: var(--dark-purple);">Once these questions are answered, we finalize the workflows and begin building Phase 0.</p>
     </div>
-    <div class="feedback-area" data-slide="13">
-      <button class="feedback-toggle" onclick="toggleFeedback(13)">💬 Leave Feedback on This Slide</button>
-      <span class="feedback-saved-indicator" id="feedback-indicator-13">✅ Saved</span>
-      <div class="feedback-body" id="feedback-body-13">
-        <textarea id="feedback-slide-13" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(13)"></textarea>
+    <div class="feedback-area" data-slide="18">
+      <button class="feedback-toggle" onclick="toggleFeedback(18)">💬 Leave Feedback on This Slide</button>
+      <span class="feedback-saved-indicator" id="feedback-indicator-18">✅ Saved</span>
+      <div class="feedback-body" id="feedback-body-18">
+        <textarea id="feedback-slide-18" rows="4" placeholder="Type your feedback here — what's correct, what's wrong, what's missing..." oninput="saveFeedback(18)"></textarea>
       </div>
     </div>
   </div>
@@ -1463,7 +2002,7 @@ style.textContent = `@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{tr
 document.head.appendChild(style);
 
 // ---- FEEDBACK SYSTEM ----
-const TOTAL_SLIDES = 13;
+const TOTAL_SLIDES = 18;
 const SLIDE_TITLES = {
   1: 'Title',
   2: 'How StaffSpot Works Today',
@@ -1471,13 +2010,18 @@ const SLIDE_TITLES = {
   4: 'Client Acquisition (Future)',
   5: 'Permanent Placement (Current)',
   6: 'Permanent Placement (Future)',
-  7: 'Contract Staffing Monthly Cycle (Current)',
-  8: 'Contract Staffing Monthly Cycle (Future)',
-  9: 'Batch Payment Reconciliation',
-  10: 'CEO Dashboard',
-  11: 'Role-Based Daily View',
-  12: 'Phased Roadmap',
-  13: 'Questions for CEO Review'
+  7: 'Permanent Placement: Key Metrics & Targets',
+  8: 'Contract Staffing Monthly Cycle (Current)',
+  9: 'Contract Staffing Monthly Cycle (Future)',
+  10: 'Contract Staffing: Sourcing to Deployment',
+  11: 'Contract Staffing: Lifecycle Events',
+  12: 'Batch Payment Reconciliation',
+  13: 'CEO Dashboard',
+  14: 'CEO: Weekly & Monthly Reviews',
+  15: 'Role-Based Daily View',
+  16: 'Phased Roadmap',
+  17: 'Statutory Compliance Calendar',
+  18: 'Questions for CEO Review'
 };
 
 function toggleFeedback(n) {
