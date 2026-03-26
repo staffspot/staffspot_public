@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StaffSpot — Business Process Workflows</title>
+<style>
+  :root {
+    --purple: #5954A3;
+    --teal: #1DBAAF;
+    --dark-purple: #443F7A;
+    --light-purple: #EEEDFA;
+    --light-teal: #E6F9F7;
+    --red: #E74C3C;
+    --light-red: #FDF0EF;
+    --green: #27AE60;
+    --light-green: #EAFAF1;
+    --yellow: #F39C12;
+    --light-yellow: #FEF9E7;
+    --gray: #7F8C8D;
+    --light-gray: #F8F9FA;
+    --dark: #2C3E50;
+    --white: #FFFFFF;
+    --shadow: 0 4px 24px rgba(68,63,122,0.10);
+    --shadow-lg: 0 8px 40px rgba(68,63,122,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--dark);
+    background: var(--light-gray);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: linear-gradient(135deg, var(--dark-purple), var(--purple));
+    box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+  nav .nav-inner {
+    display: flex; align-items: center; gap: 0;
+    max-width: 1400px; margin: 0 auto;
+    padding: 0 12px;
+  }
+  nav a {
+    display: inline-block;
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    font-size: 13px; font-weight: 500;
+    padding: 16px 14px;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+  }
+  nav a:hover, nav a:focus {
+    color: #fff;
+    background: rgba(255,255,255,0.08);
+    border-bottom-color: var(--teal);
+  }
+  nav .brand {
+    font-weight: 700; font-size: 15px; color: #fff;
+    padding-right: 20px; margin-right: 8px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+    letter-spacing: 0.5px;
+  }
+
+  /* SECTIONS */
+  section {
+    max-width: 1300px; margin: 32px auto; padding: 0 20px;
+  }
+  .card {
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    padding: 48px 56px;
+    margin-bottom: 36px;
+  }
+  @media (max-width: 768px) {
+    .card { padding: 28px 20px; }
+    nav a { font-size: 11px; padding: 12px 10px; }
+  }
+
+  h1 { font-size: 2.8em; font-weight: 800; color: var(--dark-purple); line-height: 1.15; }
+  h2 { font-size: 1.8em; font-weight: 700; color: var(--dark-purple); margin-bottom: 24px; }
+  h3 { font-size: 1.25em; font-weight: 700; color: var(--purple); margin-bottom: 12px; }
+  h4 { font-size: 1.05em; font-weight: 600; color: var(--dark); margin-bottom: 8px; }
+  .subtitle { font-size: 1.15em; color: var(--gray); font-weight: 400; margin-top: 10px; }
+  .tag { display: inline-block; font-size: 12px; font-weight: 600; padding: 4px 12px; border-radius: 20px; margin: 3px 2px; }
+  .tag-purple { background: var(--light-purple); color: var(--purple); }
+  .tag-teal { background: var(--light-teal); color: #148F85; }
+  .tag-red { background: var(--light-red); color: var(--red); }
+  .tag-green { background: var(--light-green); color: var(--green); }
+
+  /* FLOW CARDS */
+  .flow-h { display: flex; gap: 0; align-items: flex-start; overflow-x: auto; padding-bottom: 12px; }
+  .flow-h .step { flex: 1; min-width: 200px; position: relative; }
+  .flow-h .step:not(:last-child)::after {
+    content: ""; position: absolute; top: 36px; right: -18px;
+    width: 0; height: 0;
+    border-top: 12px solid transparent; border-bottom: 12px solid transparent;
+    border-left: 16px solid var(--purple);
+    z-index: 2;
+  }
+  .flow-h .step .step-card {
+    margin: 0 18px 0 0; padding: 20px 18px; border-radius: 12px;
+    border-top: 4px solid var(--purple); background: var(--white);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); min-height: 160px;
+  }
+  .flow-h .step .step-num {
+    display: inline-block; background: var(--purple); color: #fff;
+    width: 28px; height: 28px; border-radius: 50%; text-align: center;
+    line-height: 28px; font-size: 13px; font-weight: 700; margin-bottom: 8px;
+  }
+  .flow-h .step .step-title { font-weight: 700; font-size: 14px; color: var(--dark-purple); margin-bottom: 4px; }
+  .flow-h .step .step-who { font-size: 12px; color: var(--gray); margin-bottom: 8px; }
+  .flow-h .step .step-body { font-size: 13px; color: #555; line-height: 1.5; }
+  .flow-h .step .step-body ul { padding-left: 16px; }
+  .flow-h .step .step-body li { margin-bottom: 3px; }
+
+  /* PAIN BOX */
+  .pain-box {
+    background: var(--light-red); border-left: 4px solid var(--red);
+    border-radius: 8px; padding: 12px 16px; margin-top: 10px; font-size: 13px; color: var(--red);
+  }
+  .improve-box {
+    background: var(--light-green); border-left: 4px solid var(--green);
+    border-radius: 8px; padding: 12px 16px; margin-top: 10px; font-size: 13px; color: #1E8449;
+  }
+
+  /* VERTICAL FUNNEL */
+  .funnel { max-width: 800px; margin: 0 auto; }
+  .funnel-stage {
+    position: relative; padding: 22px 28px; margin-bottom: 0;
+    border-radius: 10px; transition: 0.2s;
+  }
+  .funnel-stage:hover { transform: scale(1.01); }
+  .funnel-stage .f-num {
+    display: inline-block; background: var(--dark-purple); color: #fff;
+    min-width: 28px; height: 28px; border-radius: 50%; text-align: center;
+    line-height: 28px; font-size: 12px; font-weight: 700; margin-right: 10px;
+  }
+  .funnel-stage .f-title { font-weight: 700; font-size: 15px; display: inline; }
+  .funnel-stage .f-who { font-size: 12px; color: var(--gray); margin-left: 8px; }
+  .funnel-stage .f-desc { font-size: 13px; margin-top: 6px; color: #444; }
+  .funnel-connector {
+    text-align: center; padding: 4px 0; color: var(--purple); font-size: 18px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .funnel-connector .drop { font-size: 12px; color: var(--red); font-weight: 600; }
+
+  .funnel-stage.s1 { background: linear-gradient(90deg, #EEEDFA, #fff); margin-left: 0; margin-right: 0; }
+  .funnel-stage.s2 { background: linear-gradient(90deg, #E8E7F5, #fff); margin-left: 15px; margin-right: 15px; }
+  .funnel-stage.s3 { background: linear-gradient(90deg, #E3E1F0, #fff); margin-left: 30px; margin-right: 30px; }
+  .funnel-stage.s4 { background: linear-gradient(90deg, #DDD9EB, #fff); margin-left: 45px; margin-right: 45px; }
+  .funnel-stage.s5 { background: linear-gradient(90deg, #D6D2E6, #fff); margin-left: 55px; margin-right: 55px; }
+  .funnel-stage.s6 { background: linear-gradient(90deg, #CFCAE0, #fff); margin-left: 65px; margin-right: 65px; }
+  .funnel-stage.s7 { background: linear-gradient(90deg, #C7C2DA, #fff); margin-left: 72px; margin-right: 72px; }
+  .funnel-stage.s8 { background: linear-gradient(90deg, #BFBAD5, #fff); margin-left: 78px; margin-right: 78px; }
+  .funnel-stage.s9 { background: linear-gradient(90deg, #FFE8E8, #fff); margin-left: 84px; margin-right: 84px; border-left: 3px solid var(--red); }
+  .funnel-stage.s10 { background: linear-gradient(90deg, #E6F9F7, #fff); margin-left: 90px; margin-right: 90px; border-left: 3px solid var(--green); }
+  .funnel-stage.s11 { background: linear-gradient(90deg, #FEF9E7, #fff); margin-left: 96px; margin-right: 96px; border-left: 3px solid var(--yellow); }
+
+  @media (max-width: 768px) {
+    .funnel-stage { margin-left: 0 !important; margin-right: 0 !important; }
+  }
+
+  /* CYCLE */
+  .cycle-wrap {
+    display: flex; flex-wrap: wrap; gap: 0; justify-content: center; align-items: center;
+    max-width: 900px; margin: 0 auto;
+  }
+  .cycle-step {
+    flex: 0 0 auto; width: 180px; padding: 16px; border-radius: 12px;
+    text-align: center; font-size: 13px; position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .cycle-step .c-icon { font-size: 28px; margin-bottom: 6px; }
+  .cycle-step .c-title { font-weight: 700; font-size: 13px; margin-bottom: 4px; }
+  .cycle-arrow { font-size: 24px; color: var(--purple); flex: 0 0 auto; padding: 0 4px; }
+
+  /* SIDE BY SIDE */
+  .side-by-side { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  @media (max-width: 768px) { .side-by-side { grid-template-columns: 1fr; } }
+  .side-left { border-radius: 12px; padding: 28px; }
+  .side-right { border-radius: 12px; padding: 28px; }
+
+  /* ROLE CARDS */
+  .role-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+  .role-card {
+    border-radius: 12px; padding: 24px; box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .role-card h4 { margin-bottom: 12px; font-size: 16px; }
+  .role-card ul { padding-left: 18px; font-size: 14px; }
+  .role-card li { margin-bottom: 8px; }
+
+  /* TIMELINE / ROADMAP */
+  .roadmap { position: relative; padding-left: 40px; }
+  .roadmap::before {
+    content: ""; position: absolute; left: 18px; top: 0; bottom: 0;
+    width: 4px; background: linear-gradient(to bottom, var(--teal), var(--purple));
+    border-radius: 2px;
+  }
+  .roadmap-phase {
+    position: relative; margin-bottom: 32px; padding: 24px;
+    background: var(--white); border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .roadmap-phase::before {
+    content: ""; position: absolute; left: -30px; top: 28px;
+    width: 16px; height: 16px; border-radius: 50%;
+    border: 3px solid var(--teal); background: var(--white);
+  }
+  .roadmap-phase .phase-label {
+    display: inline-block; font-size: 12px; font-weight: 700;
+    padding: 3px 10px; border-radius: 12px; margin-bottom: 8px;
+  }
+  .progress-bar {
+    height: 8px; border-radius: 4px; background: #E8E7F5; margin-top: 12px; overflow: hidden;
+  }
+  .progress-bar .fill { height: 100%; border-radius: 4px; }
+
+  /* QUESTIONS */
+  .q-group { margin-bottom: 28px; }
+  .q-group h3 { border-bottom: 2px solid var(--light-purple); padding-bottom: 8px; margin-bottom: 16px; }
+  .q-item {
+    padding: 14px 18px; margin-bottom: 10px; border-radius: 10px;
+    background: var(--light-gray); border-left: 4px solid var(--purple);
+    font-size: 14px;
+  }
+  .q-item strong { color: var(--dark-purple); }
+
+  /* DIAGRAM */
+  .diagram-box {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 18px; border-radius: 10px; font-size: 14px; font-weight: 600;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .diagram-arrow { font-size: 22px; color: var(--purple); }
+
+  /* PRINT */
+  @media print {
+    nav { display: none; }
+    section { margin: 0; padding: 0; }
+    .card { box-shadow: none; border: 1px solid #ddd; page-break-inside: avoid; margin-bottom: 20px; padding: 28px; }
+    body { background: #fff; }
+  }
+
+  /* SCROLL ANIMATIONS */
+  .card { opacity: 0; transform: translateY(20px); transition: opacity 0.5s, transform 0.5s; }
+  .card.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#slide-1">StaffSpot</a>
+    <a href="#slide-1">Title</a>
+    <a href="#slide-2">Today</a>
+    <a href="#slide-3">Client Acq.</a>
+    <a href="#slide-4">Client (Future)</a>
+    <a href="#slide-5">Perm Place.</a>
+    <a href="#slide-6">Perm (Future)</a>
+    <a href="#slide-7">Contract Cycle</a>
+    <a href="#slide-8">Contract (Future)</a>
+    <a href="#slide-9">Reconciliation</a>
+    <a href="#slide-10">CEO Dashboard</a>
+    <a href="#slide-11">Daily View</a>
+    <a href="#slide-12">Roadmap</a>
+    <a href="#slide-13">Questions</a>
+  </div>
+</nav>
+
+<!-- ============================================================ -->
+<!-- SLIDE 1: TITLE -->
+<!-- ============================================================ -->
+<section id="slide-1">
+  <div class="card" style="text-align:center; padding: 80px 56px;">
+    <div style="font-size: 48px; margin-bottom: 16px;">🏢</div>
+    <h1>StaffSpot</h1>
+    <h2 style="color: var(--teal); font-weight: 600; font-size: 1.5em; margin-bottom: 8px;">Business Process Workflows</h2>
+    <p style="font-size: 1.1em; color: var(--gray); margin-bottom: 28px;">For CEO Review &mdash; March 2026</p>
+    <div style="display:inline-block; background: linear-gradient(135deg, var(--light-purple), var(--light-teal)); padding: 16px 36px; border-radius: 12px; font-size: 1.05em; color: var(--dark-purple); font-weight: 500;">
+      Current State vs. Future State with StaffSpot Platform
+    </div>
+    <p style="margin-top: 36px; font-size: 14px; color: var(--gray);">Scroll down or use the navigation above to explore each workflow</p>
+    <div style="margin-top: 20px; font-size: 28px; color: var(--purple); animation: bounce 2s infinite;">&#8595;</div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 2: HOW STAFFSPOT WORKS TODAY -->
+<!-- ============================================================ -->
+<section id="slide-2">
+  <div class="card">
+    <h2>How StaffSpot Works Today</h2>
+    <p class="subtitle" style="margin-bottom: 32px;">Early-stage staffing firm &mdash; fewer than 5 clients, fewer than 50 contractors, building momentum</p>
+
+    <!-- Team Row -->
+    <h3 style="margin-bottom: 16px;">👥 The Team</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 32px; align-items: center;">
+      <div class="diagram-box" style="background: var(--light-purple); color: var(--dark-purple);">🎯 BD Team<br><small style="font-weight:400;">Finds clients</small></div>
+      <span class="diagram-arrow">→</span>
+      <div class="diagram-box" style="background: var(--light-teal); color: #148F85;">📋 Account Manager<br><small style="font-weight:400;">Manages relationships & quality</small></div>
+      <span class="diagram-arrow">→</span>
+      <div class="diagram-box" style="background: var(--light-yellow); color: #7D6608;">🔍 Recruiters<br><small style="font-weight:400;">Source, screen, coordinate</small></div>
+    </div>
+
+    <!-- Tools Row -->
+    <h3 style="margin-bottom: 16px;">🛠️ The Tools</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px;">
+      <span class="tag tag-purple">Naukri &mdash; Sourcing</span>
+      <span class="tag tag-purple">Excel / Google Sheets &mdash; Tracking</span>
+      <span class="tag tag-purple">OneDrive &mdash; Resume Storage</span>
+      <span class="tag tag-purple">WhatsApp &mdash; Communication</span>
+      <span class="tag tag-purple">Phone / Email &mdash; Coordination</span>
+    </div>
+
+    <!-- Pain Points -->
+    <h3 style="margin-bottom: 16px;">🔴 The Pain</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
+      <div class="pain-box">
+        <strong>Data Scattered</strong><br>Information lives in spreadsheets, WhatsApp, email, and people's heads
+      </div>
+      <div class="pain-box">
+        <strong>No Visibility</strong><br>CEO needs 1-2 hours of calls and spreadsheet checks to know what's happening
+      </div>
+      <div class="pain-box">
+        <strong>Manual Everything</strong><br>Invoicing, reconciliation, compliance, follow-ups &mdash; all manual
+      </div>
+      <div class="pain-box">
+        <strong>No Single Source of Truth</strong><br>Recruiter says "submitted 5" &mdash; no way to verify without checking multiple places
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 3: CLIENT ACQUISITION — CURRENT -->
+<!-- ============================================================ -->
+<section id="slide-3">
+  <div class="card">
+    <h2>Workflow 1 — Client Acquisition <span class="tag tag-red">Current State</span></h2>
+    <p class="subtitle" style="margin-bottom: 32px;">From first contact to first requirement &mdash; typically 2-8 weeks</p>
+
+    <div class="flow-h">
+      <div class="step">
+        <div class="step-card">
+          <span class="step-num">1</span>
+          <div class="step-title">Lead Generation</div>
+          <div class="step-who">👤 BD Team</div>
+          <div class="step-body">
+            <ul>
+              <li>Personal network & CEO contacts</li>
+              <li>LinkedIn prospecting</li>
+              <li>Referrals from placed candidates</li>
+              <li>Industry events (CII/NASSCOM)</li>
+              <li>Monitoring job boards for active hirers</li>
+            </ul>
+          </div>
+          <div class="pain-box">Leads tracked informally or not at all. No follow-up system.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-card">
+          <span class="step-num">2</span>
+          <div class="step-title">Outreach & Discovery</div>
+          <div class="step-who">👤 BD / CEO</div>
+          <div class="step-body">
+            <ul>
+              <li>Email / LinkedIn / WhatsApp outreach</li>
+              <li>Discovery meeting (in-person or video)</li>
+              <li>Understand: roles, volume, timeline</li>
+              <li>Assess: payment terms, agency competition</li>
+            </ul>
+          </div>
+          <div class="pain-box">Meeting notes in personal notebooks. No structured capture.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-card">
+          <span class="step-num">3</span>
+          <div class="step-title">Proposal & Negotiation</div>
+          <div class="step-who">👤 BD / CEO</div>
+          <div class="step-body">
+            <ul>
+              <li>Rate card or fee % proposal</li>
+              <li>Margin calculation (manual)</li>
+              <li>Payment terms negotiation</li>
+              <li>Replacement guarantee terms</li>
+            </ul>
+            <div style="margin-top:8px;font-size:12px;"><strong>Docs:</strong> Proposal email, rate card</div>
+          </div>
+          <div class="pain-box">No standard margin check. Risk of unprofitable deals.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-card">
+          <span class="step-num">4</span>
+          <div class="step-title">MSA Signing</div>
+          <div class="step-who">👤 BD / Legal</div>
+          <div class="step-body">
+            <ul>
+              <li>Draft or review MSA</li>
+              <li>Key clauses: fee %, payment terms, exclusivity, candidate ownership</li>
+              <li>Legal review (CEO at early stage)</li>
+              <li>Sign & file</li>
+            </ul>
+            <div style="margin-top:8px;font-size:12px;"><strong>Docs:</strong> Signed MSA</div>
+          </div>
+          <div class="pain-box">MSA terms not tracked. No expiry alerts. Clauses forgotten.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-card" style="border-top-color: var(--teal);">
+          <span class="step-num" style="background: var(--teal);">5</span>
+          <div class="step-title">Handoff to AM</div>
+          <div class="step-who">👤 BD → AM</div>
+          <div class="step-body">
+            <ul>
+              <li>Verbal/email context transfer</li>
+              <li>Introduce AM to client contact</li>
+              <li>First requirement received</li>
+              <li>AM assigns recruiter(s)</li>
+            </ul>
+          </div>
+          <div class="pain-box">Unstructured handoff = context loss. AM asks questions already discussed. Client loses confidence.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 4: CLIENT ACQUISITION — FUTURE -->
+<!-- ============================================================ -->
+<section id="slide-4">
+  <div class="card">
+    <h2>Workflow 1 — Client Acquisition <span class="tag tag-green">Future State</span></h2>
+    <p class="subtitle" style="margin-bottom: 32px;">Same 5 stages, now with platform support at every step</p>
+
+    <div class="flow-h">
+      <div class="step">
+        <div class="step-card" style="border-top-color: var(--green);">
+          <span class="step-num" style="background: var(--green);">1</span>
+          <div class="step-title">Lead Generation</div>
+          <div class="step-who">👤 BD Team</div>
+          <div class="step-body">Same sources, now tracked in platform</div>
+          <div class="improve-box">
+            ✅ Lead database with pipeline stages<br>
+            ✅ Duplicate detection<br>
+            ✅ Auto-reminders for stale leads<br>
+            ✅ Activity log per lead
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-card" style="border-top-color: var(--green);">
+          <span class="step-num" style="background: var(--green);">2</span>
+          <div class="step-title">Outreach & Discovery</div>
+          <div class="step-who">👤 BD / CEO</div>
+          <div class="step-body">Structured meeting capture</div>
+          <div class="improve-box">
+            ✅ Discovery meeting template<br>
+            ✅ Notes linked to lead record<br>
+            ✅ Key info captured: volume, budget, terms<br>
+            ✅ Next-step reminders
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-card" style="border-top-color: var(--green);">
+          <span class="step-num" style="background: var(--green);">3</span>
+          <div class="step-title">Proposal & Negotiation</div>
+          <div class="step-who">👤 BD / CEO</div>
+          <div class="step-body">Auto-generated proposals</div>
+          <div class="improve-box">
+            ✅ Margin calculator auto-checks viability<br>
+            ✅ Proposal generated from template<br>
+            ✅ Rate card library<br>
+            ✅ CEO approval workflow for terms
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-card" style="border-top-color: var(--green);">
+          <span class="step-num" style="background: var(--green);">4</span>
+          <div class="step-title">MSA Signing</div>
+          <div class="step-who">👤 BD / Legal</div>
+          <div class="step-body">Terms extracted to profile</div>
+          <div class="improve-box">
+            ✅ MSA terms stored in client profile<br>
+            ✅ Expiry tracking with alerts<br>
+            ✅ Key clauses visible to AM/recruiters<br>
+            ✅ Renewal reminders
+          </div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-card" style="border-top-color: var(--green);">
+          <span class="step-num" style="background: var(--green);">5</span>
+          <div class="step-title">Handoff to AM</div>
+          <div class="step-who">👤 BD → AM</div>
+          <div class="step-body">Structured handoff</div>
+          <div class="improve-box">
+            ✅ Handoff checklist (mandatory fields)<br>
+            ✅ All context in one client record<br>
+            ✅ Zero information loss<br>
+            ✅ Client onboarding task list
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 5: PERMANENT PLACEMENT — CURRENT -->
+<!-- ============================================================ -->
+<section id="slide-5">
+  <div class="card">
+    <h2>Workflow 2 — Permanent Placement <span class="tag tag-red">Current State</span></h2>
+    <p class="subtitle" style="margin-bottom: 32px;">The core revenue workflow &mdash; from requirement to payment. High touch, high risk, high manual effort.</p>
+
+    <div class="funnel">
+      <!-- Stage 1 -->
+      <div class="funnel-stage s1">
+        <span class="f-num">1</span>
+        <span class="f-title">Requirement Intake</span>
+        <span class="f-who">AM</span>
+        <div class="f-desc">Client sends requirement via email / WhatsApp / call → AM enters in Excel → assigns recruiter(s)</div>
+        <div class="pain-box" style="margin-top:8px;">Requirements arrive in different formats. Details often incomplete. Recruiter starts with vague brief.</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop" style="opacity:0;">.</span></div>
+
+      <!-- Stage 2 -->
+      <div class="funnel-stage s2">
+        <span class="f-num">2</span>
+        <span class="f-title">Sourcing</span>
+        <span class="f-who">Recruiter</span>
+        <div class="f-desc">Search Naukri / LinkedIn → download resumes → add to Excel tracker → store resumes in OneDrive</div>
+        <div class="pain-box" style="margin-top:8px;">Same candidate sourced by multiple recruiters. No duplicate detection. Resume versions scattered.</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop">~40% pass screening</span></div>
+
+      <!-- Stage 3 -->
+      <div class="funnel-stage s3">
+        <span class="f-num">3</span>
+        <span class="f-title">Screening</span>
+        <span class="f-who">Recruiter</span>
+        <div class="f-desc">Phone calls to assess: skills, current CTC, expected CTC, notice period, communication, interest level</div>
+        <div class="pain-box" style="margin-top:8px;">No structured screening form. Assessment quality varies by recruiter. CTC math done in head.</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop">~60% approved by AM</span></div>
+
+      <!-- Stage 4 -->
+      <div class="funnel-stage s4">
+        <span class="f-num">4</span>
+        <span class="f-title">AM Quality Gate</span>
+        <span class="f-who">AM</span>
+        <div class="f-desc">AM reviews shortlist → approves or rejects → secondary screen for key/senior roles</div>
+        <div class="pain-box" style="margin-top:8px;">Review queue is WhatsApp messages. No SLA tracking. Bottleneck when AM is busy.</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop">~70% submitted</span></div>
+
+      <!-- Stage 5 -->
+      <div class="funnel-stage s5">
+        <span class="f-num">5</span>
+        <span class="f-title">Submission to Client</span>
+        <span class="f-who">AM</span>
+        <div class="f-desc">Format resume (remove candidate contact info) → email to client → log submission in Excel</div>
+        <div class="pain-box" style="margin-top:8px;">Manual resume formatting. No timestamp tracking. Hard to know "when was this submitted?"</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop">⏳ Wait 3-10 days for feedback</span></div>
+
+      <!-- Stage 6 -->
+      <div class="funnel-stage s6" style="border-left: 3px solid var(--red);">
+        <span class="f-num" style="background: var(--red);">6</span>
+        <span class="f-title">Client Feedback</span>
+        <span class="f-who">AM chases client</span>
+        <div class="f-desc" style="font-size: 15px; font-weight: 600; color: var(--red);">Wait... chase... wait more... ⏳⏳⏳</div>
+        <div class="pain-box" style="margin-top:8px;"><strong>THE #1 BOTTLENECK.</strong> Client goes silent. AM sends follow-up emails. Calls go unanswered. Candidates lose interest while waiting. No escalation path.</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop">~30-40% shortlisted by client</span></div>
+
+      <!-- Stage 7 -->
+      <div class="funnel-stage s7">
+        <span class="f-num">7</span>
+        <span class="f-title">Interview Coordination</span>
+        <span class="f-who">AM / Recruiter</span>
+        <div class="f-desc">Schedule interview (back-and-forth on dates/times) → prep candidate → interview happens → collect feedback</div>
+        <div class="pain-box" style="margin-top:8px;">Scheduling is 5-10 messages per interview. No calendar integration. Candidate no-shows.</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop">~30% receive offers</span></div>
+
+      <!-- Stage 8 -->
+      <div class="funnel-stage s8">
+        <span class="f-num">8</span>
+        <span class="f-title">Offer & Negotiation</span>
+        <span class="f-who">AM brokers</span>
+        <div class="f-desc">Client makes offer → AM brokers CTC negotiation between candidate and client → counter-offer risk from current employer</div>
+        <div class="pain-box" style="margin-top:8px;">Counter-offers from current employer are a major risk. No structured risk assessment.</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop">~75% accept offers</span></div>
+
+      <!-- Stage 9 -->
+      <div class="funnel-stage s9">
+        <span class="f-num" style="background: var(--red);">9</span>
+        <span class="f-title">Notice Period ⚠️ HIGH RISK</span>
+        <span class="f-who">Recruiter</span>
+        <div class="f-desc">30-90 days of waiting. Ad-hoc check-ins. Current employer makes retention offers. Candidate gets cold feet.</div>
+        <div class="pain-box" style="margin-top:8px;"><strong>15-30% DROP OFF HERE.</strong> Revenue earned after months of work vanishes. No structured follow-up cadence. Risk signs missed.</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop">🔴 15-30% drop off</span></div>
+
+      <!-- Stage 10 -->
+      <div class="funnel-stage s10">
+        <span class="f-num" style="background: var(--green);">10</span>
+        <span class="f-title">🎉 Joining &mdash; Revenue Earned</span>
+        <span class="f-who">Finance / AM</span>
+        <div class="f-desc">Candidate joins → manual invoice created → sent to client</div>
+      </div>
+      <div class="funnel-connector">▼ <span class="drop">⏳ Wait 90 days for payment</span></div>
+
+      <!-- Stage 11 -->
+      <div class="funnel-stage s11">
+        <span class="f-num" style="background: var(--yellow);">11</span>
+        <span class="f-title">💰 Payment (90 days later)</span>
+        <span class="f-who">Finance</span>
+        <div class="f-desc">Track payment due date in Excel → follow up with client → chase if overdue → reconcile when received</div>
+        <div class="pain-box" style="margin-top:8px;">Cash flow gap: work done in January, payment in April (if on time). Manual tracking. No aging alerts.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px; padding: 20px 24px; background: linear-gradient(90deg, var(--light-red), #fff); border-radius: 12px; text-align: center;">
+      <strong style="font-size: 16px; color: var(--red);">Typical conversion: 100 sourced → 40 screened → 24 submitted → 8 shortlisted → 3 offers → 2 join → revenue collected 90 days later</strong>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 6: PERMANENT PLACEMENT — FUTURE -->
+<!-- ============================================================ -->
+<section id="slide-6">
+  <div class="card">
+    <h2>Workflow 2 — Permanent Placement <span class="tag tag-green">Future State</span></h2>
+    <p class="subtitle" style="margin-bottom: 32px;">Same pipeline, platform-enhanced at every stage. Better conversion, fewer drop-offs, full visibility.</p>
+
+    <div class="funnel">
+      <div class="funnel-stage s1">
+        <span class="f-num" style="background:var(--green);">1</span>
+        <span class="f-title">Requirement Intake</span>
+        <div class="improve-box" style="margin-top:8px;">✅ Structured intake form (mandatory fields: skills, CTC range, location, priority, timeline)<br>✅ Auto-assigns to recruiter pool based on skills<br>✅ SLA clock starts automatically</div>
+      </div>
+      <div class="funnel-connector">▼</div>
+
+      <div class="funnel-stage s2">
+        <span class="f-num" style="background:var(--green);">2</span>
+        <span class="f-title">Sourcing</span>
+        <div class="improve-box" style="margin-top:8px;">✅ Candidate database with full history<br>✅ Duplicate detection across recruiters<br>✅ Resume stored centrally with versions<br>✅ Naukri API integration (Phase 3)</div>
+      </div>
+      <div class="funnel-connector">▼</div>
+
+      <div class="funnel-stage s3">
+        <span class="f-num" style="background:var(--green);">3</span>
+        <span class="f-title">Screening</span>
+        <div class="improve-box" style="margin-top:8px;">✅ Structured screening form with skill checklist<br>✅ CTC calculator (current vs expected vs client budget)<br>✅ Standardized rating scale<br>✅ Assessment stored on candidate profile</div>
+      </div>
+      <div class="funnel-connector">▼</div>
+
+      <div class="funnel-stage s4">
+        <span class="f-num" style="background:var(--green);">4</span>
+        <span class="f-title">AM Quality Gate</span>
+        <div class="improve-box" style="margin-top:8px;">✅ AM review queue with SLA tracking<br>✅ Candidates waiting &gt;24hrs flagged<br>✅ One-click approve/reject with reason<br>✅ Feedback to recruiter for learning</div>
+      </div>
+      <div class="funnel-connector">▼</div>
+
+      <div class="funnel-stage s5">
+        <span class="f-num" style="background:var(--green);">5</span>
+        <span class="f-title">Submission to Client</span>
+        <div class="improve-box" style="margin-top:8px;">✅ Auto-formatted resume (contact info removed)<br>✅ Submission logged with timestamp<br>✅ Client portal for viewing candidates (future)<br>✅ Full audit trail</div>
+      </div>
+      <div class="funnel-connector">▼</div>
+
+      <div class="funnel-stage s6">
+        <span class="f-num" style="background:var(--green);">6</span>
+        <span class="f-title">Client Feedback</span>
+        <div class="improve-box" style="margin-top:8px;">✅ Auto-follow-up reminders: Day 3, Day 5, Day 7<br>✅ Escalation to AM → CEO at Day 10<br>✅ "Stalled" flag visible on dashboard<br>✅ Client response time tracking</div>
+      </div>
+      <div class="funnel-connector">▼</div>
+
+      <div class="funnel-stage s7">
+        <span class="f-num" style="background:var(--green);">7</span>
+        <span class="f-title">Interview Coordination</span>
+        <div class="improve-box" style="margin-top:8px;">✅ Interview scheduler with slot suggestions<br>✅ Calendar integration (future)<br>✅ Automated reminders to candidate<br>✅ Feedback capture form post-interview</div>
+      </div>
+      <div class="funnel-connector">▼</div>
+
+      <div class="funnel-stage s8">
+        <span class="f-num" style="background:var(--green);">8</span>
+        <span class="f-title">Offer & Negotiation</span>
+        <div class="improve-box" style="margin-top:8px;">✅ Counter-offer risk scoring based on: CTC hike %, notice period, candidate signals<br>✅ Risk flags visible to AM<br>✅ Offer tracking with acceptance deadline</div>
+      </div>
+      <div class="funnel-connector">▼</div>
+
+      <div class="funnel-stage s9" style="border-left: 3px solid var(--green);">
+        <span class="f-num" style="background:var(--green);">9</span>
+        <span class="f-title">Notice Period Management</span>
+        <div class="improve-box" style="margin-top:8px;">✅ Countdown timer per candidate<br>✅ Weekly check-in reminders (auto-scheduled)<br>✅ Risk scoring: 🟢 On track / 🟡 Wavering / 🔴 High risk<br>✅ Dashboard: all candidates in notice period at a glance<br>✅ Escalation triggers for at-risk candidates</div>
+      </div>
+      <div class="funnel-connector">▼</div>
+
+      <div class="funnel-stage s10">
+        <span class="f-num" style="background:var(--green);">10</span>
+        <span class="f-title">Joining & Invoicing</span>
+        <div class="improve-box" style="margin-top:8px;">✅ Joining confirmation triggers auto-invoice generation<br>✅ Invoice based on MSA terms (auto-calculated)<br>✅ Payment due date set automatically</div>
+      </div>
+      <div class="funnel-connector">▼</div>
+
+      <div class="funnel-stage s11">
+        <span class="f-num" style="background:var(--green);">11</span>
+        <span class="f-title">Payment Tracking</span>
+        <div class="improve-box" style="margin-top:8px;">✅ Payment aging tracker (30/60/90 buckets)<br>✅ Auto-reminders at 30, 60, 75 days<br>✅ Escalation alerts for overdue<br>✅ DSO tracking per client</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 7: CONTRACT STAFFING — CURRENT -->
+<!-- ============================================================ -->
+<section id="slide-7">
+  <div class="card">
+    <h2>Workflow 3 — Contract Staffing Monthly Cycle <span class="tag tag-red">Current State</span></h2>
+    <p class="subtitle" style="margin-bottom: 32px;">The monthly operational grind: timesheets → invoices → payments → payroll → compliance. Repeats every month.</p>
+
+    <div class="cycle-wrap" style="flex-wrap: wrap;">
+      <div class="cycle-step" style="background: var(--light-purple);">
+        <div class="c-icon">👷</div>
+        <div class="c-title">Contractor Works</div>
+        <div>Month starts. Contractor works at client site.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-teal);">
+        <div class="c-icon">📋</div>
+        <div class="c-title">EOM: Collect Timesheet</div>
+        <div>Chase contractor for timesheet. Different formats.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-red);">
+        <div class="c-icon">⏳</div>
+        <div class="c-title">Chase Client Approval</div>
+        <div style="color:var(--red);font-weight:600;">BOTTLENECK. Client delays 5-15 days.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-yellow);">
+        <div class="c-icon">🧮</div>
+        <div class="c-title">Manual Invoice Calc</div>
+        <div>Calculate bill amount from timesheet. Manual Excel.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-purple);">
+        <div class="c-icon">📧</div>
+        <div class="c-title">Send Invoice</div>
+        <div>Email invoice to client. Track in spreadsheet.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-red);">
+        <div class="c-icon">⏳</div>
+        <div class="c-title">Wait 30-60 Days</div>
+        <div style="color:var(--red);font-weight:600;">Payment delay. Cash flow pressure.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-yellow);">
+        <div class="c-icon">🔍</div>
+        <div class="c-title">Match Payment</div>
+        <div>Manually match batch payment to invoices. Call client.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-teal);">
+        <div class="c-icon">💰</div>
+        <div class="c-title">Calculate & Pay Salary</div>
+        <div>Manual salary calculation. Pay contractor.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-purple);">
+        <div class="c-icon">📑</div>
+        <div class="c-title">File PF/ESI/TDS</div>
+        <div>Manual compliance filings. Deadline stress.</div>
+      </div>
+      <div class="cycle-arrow">🔄</div>
+    </div>
+
+    <!-- Timeline -->
+    <div style="margin-top: 36px; padding: 24px; background: var(--light-gray); border-radius: 12px;">
+      <h3 style="margin-bottom: 12px;">📅 Timeline Reality</h3>
+      <div style="display: flex; gap: 0; align-items: stretch; overflow-x: auto;">
+        <div style="flex:1; min-width:120px; padding: 12px; text-align: center; background: var(--light-green); border-radius: 8px 0 0 8px;">
+          <strong>March</strong><br>Work done
+        </div>
+        <div style="flex:1; min-width:120px; padding: 12px; text-align: center; background: var(--light-yellow);">
+          <strong>April 1-15</strong><br>Timesheet chase
+        </div>
+        <div style="flex:1; min-width:120px; padding: 12px; text-align: center; background: var(--light-yellow);">
+          <strong>April 15-30</strong><br>Invoice sent
+        </div>
+        <div style="flex:1; min-width:120px; padding: 12px; text-align: center; background: var(--light-red);">
+          <strong>May-June</strong><br>Payment arrives
+        </div>
+        <div style="flex:1; min-width:120px; padding: 12px; text-align: center; background: var(--light-purple); border-radius: 0 8px 8px 0;">
+          <strong>After payment</strong><br>Contractor paid
+        </div>
+      </div>
+      <div class="pain-box" style="margin-top: 12px;">
+        <strong>Cash flow gap:</strong> 60-90 days between work done and contractor paid. StaffSpot pays AFTER receiving client payment.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 8: CONTRACT STAFFING — FUTURE -->
+<!-- ============================================================ -->
+<section id="slide-8">
+  <div class="card">
+    <h2>Workflow 3 — Contract Staffing Monthly Cycle <span class="tag tag-green">Future State</span></h2>
+    <p class="subtitle" style="margin-bottom: 32px;">Same cycle, dramatically faster. Fewer manual steps, proactive alerts, automated calculations.</p>
+
+    <div class="cycle-wrap" style="flex-wrap: wrap;">
+      <div class="cycle-step" style="background: var(--light-green); border: 2px solid var(--green);">
+        <div class="c-icon">👷</div>
+        <div class="c-title">Contractor Works</div>
+        <div>Platform tracks assignment start/end dates. Auto-alerts for renewals.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-green); border: 2px solid var(--green);">
+        <div class="c-icon">📋</div>
+        <div class="c-title">Timesheet Alert</div>
+        <div>Day 28: Auto-reminder to contractor. Day 1: Escalate if missing.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-green); border: 2px solid var(--green);">
+        <div class="c-icon">✅</div>
+        <div class="c-title">One-Click Approval</div>
+        <div>Client gets approval link. Auto-nudge Day 3, 5. Escalate Day 7.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-green); border: 2px solid var(--green);">
+        <div class="c-icon">⚡</div>
+        <div class="c-title">Auto-Invoice</div>
+        <div>Invoice auto-generated from approved timesheet + bill rate.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-green); border: 2px solid var(--green);">
+        <div class="c-icon">💰</div>
+        <div class="c-title">Smart Payment Match</div>
+        <div>Enter amount → platform suggests invoices → auto-calculates TDS.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-green); border: 2px solid var(--green);">
+        <div class="c-icon">💳</div>
+        <div class="c-title">Auto Salary + Payslip</div>
+        <div>Salary auto-calculated. Payslip auto-generated.</div>
+      </div>
+      <div class="cycle-arrow">→</div>
+      <div class="cycle-step" style="background: var(--light-green); border: 2px solid var(--green);">
+        <div class="c-icon">📅</div>
+        <div class="c-title">Compliance Calendar</div>
+        <div>Countdown alerts for PF/ESI/TDS. Never miss a deadline.</div>
+      </div>
+      <div class="cycle-arrow">🔄</div>
+    </div>
+
+    <!-- Improved Timeline -->
+    <div style="margin-top: 36px; padding: 24px; background: var(--light-green); border-radius: 12px;">
+      <h3 style="margin-bottom: 12px;">📅 Improved Timeline</h3>
+      <div style="display: flex; gap: 0; align-items: stretch; overflow-x: auto;">
+        <div style="flex:1; min-width:120px; padding: 12px; text-align: center; background: rgba(39,174,96,0.15); border-radius: 8px 0 0 8px;">
+          <strong>March</strong><br>Work done
+        </div>
+        <div style="flex:1; min-width:120px; padding: 12px; text-align: center; background: rgba(39,174,96,0.2);">
+          <strong>April 1-3</strong><br>Timesheet collected
+        </div>
+        <div style="flex:1; min-width:120px; padding: 12px; text-align: center; background: rgba(39,174,96,0.25);">
+          <strong>April 3-7</strong><br>Approved + invoiced
+        </div>
+        <div style="flex:1; min-width:120px; padding: 12px; text-align: center; background: rgba(39,174,96,0.3); border-radius: 0 8px 8px 0;">
+          <strong>May</strong><br>Payment + auto-reconcile
+        </div>
+      </div>
+      <div class="improve-box" style="margin-top: 12px;">
+        <strong>Cycle reduced by 2-3 weeks.</strong> Timesheet collection: days not weeks. Invoice generation: minutes not hours. Reconciliation: automated.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 9: BATCH PAYMENT RECONCILIATION -->
+<!-- ============================================================ -->
+<section id="slide-9">
+  <div class="card">
+    <h2>Batch Payment Reconciliation <span class="tag tag-red">Before</span> & <span class="tag tag-green">After</span></h2>
+    <p class="subtitle" style="margin-bottom: 32px;">The hidden time sink: matching lump-sum client payments to individual invoices</p>
+
+    <div class="side-by-side">
+      <!-- LEFT: Today -->
+      <div class="side-left" style="background: var(--light-red); border: 2px solid #F5B7B1;">
+        <h3 style="color: var(--red);">🔴 Today: Manual Reconciliation</h3>
+        <div style="font-size: 14px; line-height: 1.8;">
+          <p><strong>Scenario:</strong> 10 invoices submitted to Client X</p>
+          <p>Client sends 3 bank transfers:</p>
+          <div style="background: #fff; padding: 14px; border-radius: 8px; margin: 12px 0; font-family: monospace; font-size: 13px;">
+            Payment 1: ₹4,85,230<br>
+            &nbsp;&nbsp;Ref: "INV 001-004"<br>
+            &nbsp;&nbsp;⚠️ Amount doesn't match sum of INV 001-004<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;(TDS deducted but amount not stated)<br><br>
+            Payment 2: ₹2,10,000<br>
+            &nbsp;&nbsp;Ref: "March invoices"<br>
+            &nbsp;&nbsp;⚠️ Which invoices? Nobody knows.<br><br>
+            Payment 3: ₹1,50,000<br>
+            &nbsp;&nbsp;Ref: "Partial - rest next week"<br>
+            &nbsp;&nbsp;⚠️ Partial against which invoices?
+          </div>
+          <p><strong>What happens next:</strong></p>
+          <ul style="padding-left: 18px;">
+            <li>Finance person opens Excel, tries to match</li>
+            <li>Calls client AP team for clarification</li>
+            <li>Client says "our system shows those are for INV 005-007"</li>
+            <li>Numbers still don't match &mdash; TDS difference</li>
+            <li>More calls, more emails</li>
+          </ul>
+          <div class="pain-box" style="margin-top: 12px;">
+            <strong>⏱️ Takes 2-3 days per payment cycle.</strong> Error-prone. Invoices marked "paid" that aren't fully paid. Outstanding amounts wrong.
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Future -->
+      <div class="side-right" style="background: var(--light-green); border: 2px solid #A9DFBF;">
+        <h3 style="color: var(--green);">🟢 Future: Smart Reconciliation</h3>
+        <div style="font-size: 14px; line-height: 1.8;">
+          <p><strong>Same scenario, platform-assisted:</strong></p>
+          <div style="background: #fff; padding: 14px; border-radius: 8px; margin: 12px 0; font-size: 13px;">
+            <strong>Step 1:</strong> Enter payment: ₹4,85,230<br><br>
+            <strong>Step 2:</strong> Platform suggests:<br>
+            &nbsp;&nbsp;📋 INV 001 (₹1,25,000) + INV 002 (₹1,10,000)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;+ INV 003 (₹1,50,000) + INV 004 (₹1,20,000)<br>
+            &nbsp;&nbsp;Sum: ₹5,05,000<br>
+            &nbsp;&nbsp;Expected TDS (2%): ₹10,100<br>
+            &nbsp;&nbsp;Expected receipt: ₹4,94,900<br>
+            &nbsp;&nbsp;Actual receipt: ₹4,85,230<br>
+            &nbsp;&nbsp;<span style="color: var(--yellow);">⚠️ Difference: ₹9,670 — investigate</span><br><br>
+            <strong>Step 3:</strong> One click: Confirm or Flag
+          </div>
+          <p><strong>Result:</strong></p>
+          <ul style="padding-left: 18px;">
+            <li>Auto-suggests invoice matches based on amounts</li>
+            <li>Auto-calculates expected TDS</li>
+            <li>Highlights discrepancies clearly</li>
+            <li>Partial payments tracked automatically</li>
+            <li>Full audit trail of what was matched when</li>
+          </ul>
+          <div class="improve-box" style="margin-top: 12px;">
+            <strong>⏱️ Takes minutes, not days.</strong> Errors caught immediately. Outstanding always accurate. Client calls reduced by 80%.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 10: CEO DASHBOARD -->
+<!-- ============================================================ -->
+<section id="slide-10">
+  <div class="card">
+    <h2>CEO Dashboard <span class="tag tag-red">Current</span> vs <span class="tag tag-green">Future</span></h2>
+    <p class="subtitle" style="margin-bottom: 32px;">How the CEO starts her day</p>
+
+    <div class="side-by-side">
+      <!-- LEFT: Today -->
+      <div class="side-left" style="background: var(--light-red); border: 2px solid #F5B7B1;">
+        <h3 style="color: var(--red);">🔴 Today: The Morning Routine</h3>
+        <div style="font-size: 14px; line-height: 2;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <span style="background: var(--red); color: #fff; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink:0;">1</span>
+            Open laptop
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <span style="background: var(--red); color: #fff; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink:0;">2</span>
+            Call AM for verbal updates
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <span style="background: var(--red); color: #fff; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink:0;">3</span>
+            Open 4 different Excel sheets
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <span style="background: var(--red); color: #fff; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink:0;">4</span>
+            Scroll through WhatsApp groups
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <span style="background: var(--red); color: #fff; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink:0;">5</span>
+            30-minute standup call
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <span style="background: var(--red); color: #fff; border-radius: 50%; width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink:0;">6</span>
+            Mentally piece everything together
+          </div>
+        </div>
+        <div class="pain-box" style="margin-top: 16px; text-align: center; font-size: 18px;">
+          <strong>⏱️ 1-2 hours</strong><br>before she knows what's happening
+        </div>
+      </div>
+
+      <!-- RIGHT: Future -->
+      <div class="side-right" style="background: var(--light-green); border: 2px solid #A9DFBF;">
+        <h3 style="color: var(--green);">🟢 Future: Open Platform</h3>
+        <div style="font-size: 14px;">
+          <div style="background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <strong>📊 Today's Pulse</strong><br>
+            <span style="font-size:13px;">Submissions: 8 | Interviews: 3 | Offers: 1 | Joinings: 2 | Drop-off risks: 1 🔴</span>
+          </div>
+          <div style="background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <strong>📋 Requirements Health</strong><br>
+            <span style="font-size:13px;">🟢 On track: 12 | 🟡 Slow: 4 | 🔴 Stalled: 2</span>
+          </div>
+          <div style="background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <strong>💰 Revenue Snapshot</strong><br>
+            <span style="font-size:13px;">This month: ₹8.2L | Pipeline: ₹14L | Outstanding: ₹22L | Overdue: ₹3.5L 🔴</span>
+          </div>
+          <div style="background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <strong>👥 Team Activity</strong><br>
+            <span style="font-size:13px;">Per recruiter: submissions, closures, pipeline health</span>
+          </div>
+          <div style="background: #fff; border-radius: 10px; padding: 16px; margin-bottom: 0; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <strong>🔔 Action Items</strong><br>
+            <span style="font-size:13px;">What needs CEO attention today — escalations, approvals, decisions</span>
+          </div>
+        </div>
+        <div class="improve-box" style="margin-top: 16px; text-align: center; font-size: 18px;">
+          <strong>⏱️ 5 minutes</strong><br>complete visibility
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 11: ROLE-BASED DAILY VIEW -->
+<!-- ============================================================ -->
+<section id="slide-11">
+  <div class="card">
+    <h2>Role-Based: "What Should I Do Today?"</h2>
+    <p class="subtitle" style="margin-bottom: 32px;">Every role opens the platform and immediately sees their priorities. No guessing, no asking.</p>
+
+    <div class="role-grid">
+      <!-- Recruiter -->
+      <div class="role-card" style="background: linear-gradient(135deg, #EEEDFA, #fff); border-top: 4px solid var(--purple);">
+        <h4>🔍 Recruiter</h4>
+        <ul>
+          <li>Follow up with <strong>Candidate X</strong> — notice period Week 4, last contact 5 days ago 🟡</li>
+          <li>Get interview feedback from <strong>Client A</strong> — waiting 3 days ⏳</li>
+          <li>New requirement assigned: <strong>Sr. Python Dev</strong> — SLA starts today</li>
+          <li>My pipeline: <strong>23 candidates</strong> across 5 requirements</li>
+        </ul>
+      </div>
+
+      <!-- Account Manager -->
+      <div class="role-card" style="background: linear-gradient(135deg, #E6F9F7, #fff); border-top: 4px solid var(--teal);">
+        <h4>📋 Account Manager</h4>
+        <ul>
+          <li><strong>3 timesheets</strong> overdue from Client X — need to chase</li>
+          <li>Review <strong>4 candidates</strong> in AM queue — waiting &gt;24hrs ⚠️</li>
+          <li><strong>Client B</strong> went quiet — no feedback 6 days 🔴</li>
+          <li>New requirement from <strong>Client C</strong> — needs recruiter assignment</li>
+        </ul>
+      </div>
+
+      <!-- Finance -->
+      <div class="role-card" style="background: linear-gradient(135deg, #FEF9E7, #fff); border-top: 4px solid var(--yellow);">
+        <h4>💰 Finance</h4>
+        <ul>
+          <li><strong>PF ECR</strong> due in 3 days — file today 📅</li>
+          <li><strong>2 payments</strong> received — need reconciliation</li>
+          <li><strong>5 invoices</strong> ready to generate</li>
+          <li>Payment reminder: <strong>Client C ₹2.1L</strong> overdue 35 days 🔴</li>
+        </ul>
+      </div>
+
+      <!-- CEO -->
+      <div class="role-card" style="background: linear-gradient(135deg, #F8E8FF, #fff); border-top: 4px solid var(--dark-purple);">
+        <h4>👑 CEO</h4>
+        <ul>
+          <li><strong>Today's pulse</strong> + 2 escalations requiring decision</li>
+          <li><strong>Revenue vs target:</strong> 72% of monthly target achieved</li>
+          <li><strong>Team productivity:</strong> Recruiter A is top performer, Recruiter C needs support</li>
+          <li><strong>Client health:</strong> Client D engagement declining — review needed</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 12: ROADMAP -->
+<!-- ============================================================ -->
+<section id="slide-12">
+  <div class="card">
+    <h2>What We Build — Phased Roadmap</h2>
+    <p class="subtitle" style="margin-bottom: 36px;">Incremental value delivery. Each phase solves a concrete pain. No big-bang launch.</p>
+
+    <div class="roadmap">
+      <!-- Phase 0 -->
+      <div class="roadmap-phase">
+        <span class="phase-label" style="background: var(--teal); color: #fff;">Phase 0 — Months 1-3</span>
+        <h3 style="margin-bottom: 4px;">"Replace Excel"</h3>
+        <p style="font-size: 14px; color: #555; margin-bottom: 8px;">The foundation. Get all data into one place. Stop losing information.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <span class="tag tag-teal">Candidate Database</span>
+          <span class="tag tag-teal">Client Database</span>
+          <span class="tag tag-teal">Requirements Tracker</span>
+          <span class="tag tag-teal">Pipeline View</span>
+          <span class="tag tag-teal">Basic Dashboard</span>
+          <span class="tag tag-teal">Search & Filter</span>
+        </div>
+        <div class="progress-bar"><div class="fill" style="width: 100%; background: var(--teal);"></div></div>
+      </div>
+
+      <!-- Phase 1 -->
+      <div class="roadmap-phase">
+        <span class="phase-label" style="background: var(--purple); color: #fff;">Phase 1 — Months 4-8</span>
+        <h3 style="margin-bottom: 4px;">"Run Permanent Staffing"</h3>
+        <p style="font-size: 14px; color: #555; margin-bottom: 8px;">End-to-end permanent placement workflow. From requirement to payment collection.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <span class="tag tag-purple">Placement Tracking</span>
+          <span class="tag tag-purple">Invoice Generation</span>
+          <span class="tag tag-purple">Payment Collection</span>
+          <span class="tag tag-purple">Notifications & Reminders</span>
+          <span class="tag tag-purple">Reports & Analytics</span>
+          <span class="tag tag-purple">Notice Period Management</span>
+        </div>
+        <div class="progress-bar"><div class="fill" style="width: 65%; background: var(--purple);"></div></div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="roadmap-phase">
+        <span class="phase-label" style="background: var(--dark-purple); color: #fff;">Phase 2 — Months 9-15</span>
+        <h3 style="margin-bottom: 4px;">"Run Contract Staffing"</h3>
+        <p style="font-size: 14px; color: #555; margin-bottom: 8px;">The operational backbone. Monthly billing cycle, payroll, compliance &mdash; automated.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <span class="tag tag-purple">Timesheet Management</span>
+          <span class="tag tag-purple">Contract Billing</span>
+          <span class="tag tag-purple">Payroll Calculation</span>
+          <span class="tag tag-purple">Statutory Compliance</span>
+          <span class="tag tag-purple">Batch Reconciliation</span>
+          <span class="tag tag-purple">Contractor Portal</span>
+        </div>
+        <div class="progress-bar"><div class="fill" style="width: 35%; background: var(--dark-purple);"></div></div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="roadmap-phase">
+        <span class="phase-label" style="background: var(--yellow); color: #fff;">Phase 3 — 12+ Months</span>
+        <h3 style="margin-bottom: 4px;">"Scale & Productize"</h3>
+        <p style="font-size: 14px; color: #555; margin-bottom: 8px;">From internal tool to product. Integrations, advanced analytics, multi-tenant readiness.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+          <span class="tag" style="background: var(--light-yellow); color: #7D6608;">WhatsApp Integration</span>
+          <span class="tag" style="background: var(--light-yellow); color: #7D6608;">Naukri API</span>
+          <span class="tag" style="background: var(--light-yellow); color: #7D6608;">Advanced Analytics</span>
+          <span class="tag" style="background: var(--light-yellow); color: #7D6608;">Multi-Tenant</span>
+          <span class="tag" style="background: var(--light-yellow); color: #7D6608;">Client Portal</span>
+          <span class="tag" style="background: var(--light-yellow); color: #7D6608;">Candidate App</span>
+        </div>
+        <div class="progress-bar"><div class="fill" style="width: 15%; background: var(--yellow);"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SLIDE 13: QUESTIONS FOR CEO -->
+<!-- ============================================================ -->
+<section id="slide-13">
+  <div class="card">
+    <h2>Questions for CEO Review</h2>
+    <p class="subtitle" style="margin-bottom: 32px;">Please review all workflows above and share your feedback. Here are specific questions we need answered to finalize the platform blueprint.</p>
+
+    <!-- Group A -->
+    <div class="q-group">
+      <h3>A. Current Operations (Q1–Q5)</h3>
+
+      <div class="q-item">
+        <strong>Q1. Client Acquisition Handoff:</strong> Is the BD-to-AM handoff described accurately? Who currently receives client requirements — always the AM, or sometimes BD or the CEO directly?
+      </div>
+      <div class="q-item">
+        <strong>Q2. Requirement Intake:</strong> Does the client always communicate the full CTC range upfront, or does StaffSpot sometimes have to estimate? Are requirements always for specific skills, or sometimes vague ("I need a good developer")?
+      </div>
+      <div class="q-item">
+        <strong>Q3. Quality Gate:</strong> Is the AM always the quality gate before client submission, or do senior recruiters sometimes submit directly for requirements they know well?
+      </div>
+      <div class="q-item">
+        <strong>Q4. Contact Info Removal:</strong> Does StaffSpot currently remove candidate contact info from resumes before submission? Is this standard practice for your clients?
+      </div>
+      <div class="q-item">
+        <strong>Q5. Notice Period Management:</strong> How does StaffSpot currently handle the notice period phase? Is there structured follow-up, or is it ad-hoc?
+      </div>
+    </div>
+
+    <!-- Group B -->
+    <div class="q-group">
+      <h3>B. Financial (Q6–Q9)</h3>
+
+      <div class="q-item">
+        <strong>Q6. Payment Terms:</strong> Is it always 90 days from joining for permanent placements? Or does it vary by client? Are there any clients who pay faster?
+      </div>
+      <div class="q-item">
+        <strong>Q7. Timesheets:</strong> Who currently collects the timesheets — the contractor submits, or StaffSpot's team collects from the client? Is there a standard format?
+      </div>
+      <div class="q-item">
+        <strong>Q8. Invoicing:</strong> Who generates invoices today — is there a finance person, or does the AM/CEO handle it? What tool is used (Tally? Excel? Manual)?
+      </div>
+      <div class="q-item">
+        <strong>Q9. Batch Payments:</strong> Does the process described (client pays in batches, references specific invoices) match how your clients actually pay? Any clients who pay differently?
+      </div>
+    </div>
+
+    <!-- Group C -->
+    <div class="q-group">
+      <h3>C. Strategic (Q10–Q14)</h3>
+
+      <div class="q-item">
+        <strong>Q10. Compliance:</strong> Is compliance handled in-house or outsourced to a CA? Who is responsible for PF/ESI filings today?
+      </div>
+      <div class="q-item">
+        <strong>Q11. CEO Daily View:</strong> Is the information described in the daily dashboard what you would actually want to see? What's missing? What's unnecessary?
+      </div>
+      <div class="q-item">
+        <strong>Q12. Missing Workflows:</strong> Are there any workflows completely missing? For example: how does StaffSpot handle a candidate who is unsuitable after placement? How are recruiter disputes handled? How does the CEO approve/reject expenses?
+      </div>
+      <div class="q-item">
+        <strong>Q13. Client-Specific Quirks:</strong> Are there any client-specific quirks that make the standard workflow different? (e.g., "Client X requires video profiles" or "Client Y only accepts candidates from product companies")
+      </div>
+      <div class="q-item">
+        <strong>Q14. WhatsApp Centrality:</strong> How central is WhatsApp to daily operations? Is candidate communication primarily via WhatsApp? Is client communication also via WhatsApp?
+      </div>
+    </div>
+
+    <div style="margin-top: 32px; padding: 24px; background: linear-gradient(135deg, var(--light-purple), var(--light-teal)); border-radius: 12px; text-align: center;">
+      <p style="font-size: 16px; font-weight: 600; color: var(--dark-purple);">Once these questions are answered, we finalize the workflows and begin building Phase 0.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer style="text-align: center; padding: 40px 20px; color: var(--gray); font-size: 13px;">
+  <p>StaffSpot Business Process Workflows &mdash; March 2026</p>
+  <p>Confidential &mdash; For internal review only</p>
+</footer>
+
+<script>
+// Scroll animation: reveal cards as they enter viewport
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.card').forEach(card => observer.observe(card));
+
+// Highlight active nav link on scroll
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a:not(.brand)');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop - 100;
+    if (window.scrollY >= sectionTop) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.style.color = link.getAttribute('href') === '#' + current
+      ? '#fff'
+      : 'rgba(255,255,255,0.65)';
+    link.style.borderBottomColor = link.getAttribute('href') === '#' + current
+      ? '#1DBAAF'
+      : 'transparent';
+  });
+});
+
+// Bounce animation for arrow
+const style = document.createElement('style');
+style.textContent = `@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>
